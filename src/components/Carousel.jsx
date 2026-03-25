@@ -10,7 +10,7 @@ import img4 from '../assets/carousel-4.png'
 gsap.registerPlugin(ScrollTrigger)
 
 const slides = [
-  { src: img1, label: 'Quadra de Saibro', desc: 'Padrão internacional com iluminação de alto rendimento e cobertura retrátil.' },
+  { src: img1, label: 'Quadra de Saibro', desc: 'Padrão internacional com iluminação de alto rendimento e cobertura.' },
   { src: img2, label: 'Área Social', desc: 'Espaço integrado às quadras de padel para convivência e descompressão.' },
   { src: img3, label: 'Lounge', desc: 'Ambientes pensados para conforto, networking e experiências exclusivas.' },
   { src: img4, label: 'Quadra de Padel', desc: 'Estrutura profissional com grama sintética de última geração.' },

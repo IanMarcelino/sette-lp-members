@@ -5,7 +5,7 @@ import Carousel from './Carousel'
 const pillars = [
   {
     title: 'Arquitetura contemporânea',
-    desc: 'Linhas fortes, paleta premium navy + terracota, materiais honestos. Ambientes que respiram elite esportiva.',
+    desc: 'Linhas fortes, paleta navy + terracota, materiais honestos. Ambientes que respiram elite esportiva.',
   },
   {
     title: 'Quadras de padrão internacional',

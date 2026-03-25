@@ -57,7 +57,7 @@ export default function Exclusivity() {
           </div>
 
           <p className="font-display text-lg sm:text-xl md:text-2xl text-cream/60 italic font-light leading-relaxed max-w-2xl mx-auto">
-            O Sette será restrito a um número extremamente reduzido de membros.
+            O Sette contará com um número extremamente reduzido de membros, reunindo pessoas únicas.
           </p>
           <p className="mt-4 text-sm sm:text-base text-stone/50 font-light leading-relaxed max-w-lg mx-auto font-body">
             Novas admissões acontecerão apenas por convite<br className="hidden sm:block" /> ou lista de prioridade.

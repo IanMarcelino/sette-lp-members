@@ -50,7 +50,7 @@ export default function Philosophy() {
             "O jogo não é decidido no ponto.
             <br />É decidido no <span className="text-terracotta">SETTE</span>."
           </blockquote>
-          <p className="mt-6 text-xs sm:text-sm text-stone/60 font-light font-body tracking-wide">
+          <p className="mt-6 text-sm sm:text-base text-stone font-normal font-body tracking-wide">
             e aqui, começa o seu melhor set.
           </p>
         </motion.div>
