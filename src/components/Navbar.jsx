@@ -27,13 +27,13 @@ export default function Navbar() {
       </motion.a>
 
       <motion.a
-        href="#acesso"
+        href="#admissao"
         className="text-[0.6rem] tracking-ultra-wide uppercase text-terracotta font-light font-body hover:text-cream transition-colors duration-300"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 1 }}
       >
-        Solicitar acesso
+        Candidatar-se a membro
       </motion.a>
     </motion.nav>
   )

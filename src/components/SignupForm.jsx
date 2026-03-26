@@ -20,7 +20,7 @@ export default function SignupForm() {
   ]
 
   return (
-    <section id="acesso" className="relative overflow-hidden" ref={ref}>
+    <section id="admissao" className="relative overflow-hidden" ref={ref}>
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[80vh]">
         {/* Image side */}
         <motion.div
@@ -45,12 +45,12 @@ export default function SignupForm() {
             variants={{ visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 0.2 } } }}>
 
             <span className="inline-block text-[0.6rem] tracking-ultra-wide uppercase text-terracotta font-light font-body mb-10">
-              Lista de prioridade
+              Processo de admissão
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-navy">Solicite acesso</h2>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-navy">Candidate-se a membro</h2>
             <div className="my-8 w-10 h-[2px] bg-terracotta/40" />
             <p className="text-sm text-stone font-light leading-relaxed mb-12 font-body">
-              Cadastre-se para receber prioridade no processo de admissão.
+              O acesso ao Sette Racket Club acontece por meio de um processo seletivo e requer investimento inicial para admissão como membro.
             </p>
 
             {submitted ? (
@@ -79,8 +79,11 @@ export default function SignupForm() {
                 <div className="pt-8">
                   <motion.button type="submit" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                     className="w-full sm:w-auto px-12 py-4 bg-navy text-cream text-[0.65rem] sm:text-xs tracking-ultra-wide uppercase font-light font-body hover:bg-terracotta transition-all duration-500 ease-out cursor-pointer border border-navy hover:border-terracotta">
-                    Entrar na lista de prioridade
+                    Solicitar admissão como membro
                   </motion.button>
+                  <p className="mt-4 text-[0.65rem] text-stone/60 font-light font-body leading-relaxed max-w-sm">
+                    O clube também estará aberto ao público geral. A inscrição acima refere-se ao processo de admissão de membros.
+                  </p>
                 </div>
               </form>
             )}

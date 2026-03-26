@@ -47,7 +47,7 @@ export default function Exclusivity() {
           <span className="inline-block text-[0.6rem] tracking-ultra-wide uppercase text-terracotta font-light font-body mb-10">
             Exclusividade
           </span>
-          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-cream tracking-wide">Um dos clubes mais exclusivos do Brasil</h2>
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-cream tracking-wide">Um novo padrão em tênis e lifestyle</h2>
 
           {/* Decorative divider */}
           <div className="flex items-center justify-center gap-4 my-10">
@@ -57,10 +57,10 @@ export default function Exclusivity() {
           </div>
 
           <p className="font-display text-lg sm:text-xl md:text-2xl text-cream/60 italic font-light leading-relaxed max-w-2xl mx-auto">
-            O Sette contará com um número extremamente reduzido de membros, reunindo pessoas únicas.
+            O Sette poderá ser frequentado pelo público em geral, mas contará com um número reduzido de membros com acesso privilegiado.
           </p>
           <p className="mt-4 text-sm sm:text-base text-stone/50 font-light leading-relaxed max-w-lg mx-auto font-body">
-            Novas admissões acontecerão apenas por convite<br className="hidden sm:block" /> ou lista de prioridade.
+            Novas admissões de membros acontecerão por processo seletivo<br className="hidden sm:block" /> ou lista de prioridade.
           </p>
         </motion.div>
 

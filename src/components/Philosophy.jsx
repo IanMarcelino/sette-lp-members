@@ -22,9 +22,9 @@ export default function Philosophy() {
             Por que Sette?
           </span>
           <p className="font-display text-xl sm:text-2xl md:text-3xl font-light text-navy leading-relaxed mb-8">
-            Em italiano, significa "set" — a essência do tênis,
+            Sette significa sete em italiano — e sua pronúncia
             <br className="hidden md:block" />
-            o capítulo que define a história de cada partida.
+            remete ao <em className="text-terracotta">set</em>, a essência de cada partida no tênis.
           </p>
         </motion.div>
 
