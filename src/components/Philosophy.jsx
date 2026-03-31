@@ -22,9 +22,11 @@ export default function Philosophy() {
             Por que Sette?
           </span>
           <p className="font-display text-xl sm:text-2xl md:text-3xl font-light text-navy leading-relaxed mb-8">
-            Sette significa sete em italiano — e sua pronúncia
+            Sette significa sete em italiano — um número perfeito,
             <br className="hidden md:block" />
-            remete ao <em className="text-terracotta">set</em>, a essência de cada partida no tênis.
+            símbolo de completude. E sua pronúncia remete ao <em className="text-terracotta">set</em>,
+            <br className="hidden md:block" />
+            a essência de cada partida no tênis.
           </p>
         </motion.div>
 
