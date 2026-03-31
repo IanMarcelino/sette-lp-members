@@ -36,7 +36,7 @@ export default function Members() {
             O clube contará com um grupo restrito de membros, com acesso a benefícios, prioridade e experiências diferenciadas.
           </p>
           <p className="mt-6 text-sm sm:text-base text-stone/50 font-light leading-relaxed max-w-lg mx-auto font-body">
-            A entrada como membro ocorre mediante processo de admissão e investimento inicial.
+            A entrada como membro ocorre mediante processo de adesão e investimento inicial.
           </p>
         </motion.div>
 
@@ -89,6 +89,14 @@ export default function Members() {
               <li className="flex items-start gap-3">
                 <span className="mt-1 w-1 h-1 rounded-full bg-terracotta/60 flex-shrink-0" />
                 Status e benefícios diferenciados
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-1 w-1 h-1 rounded-full bg-terracotta/60 flex-shrink-0" />
+                Área social VIP exclusiva para membros
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-1 w-1 h-1 rounded-full bg-terracotta/60 flex-shrink-0" />
+                Serviços exclusivos e personalizados
               </li>
             </ul>
           </div>

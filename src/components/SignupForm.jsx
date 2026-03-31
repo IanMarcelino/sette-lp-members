@@ -8,10 +8,26 @@ export default function SignupForm() {
   const [ref, controls] = useScrollReveal(0.1)
   const [form, setForm] = useState({ nome: '', whatsapp: '', email: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const [focused, setFocused] = useState(null)
 
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzr-UX_Ix6Y9NI6BkCmTz6S7Dy1cWHZ6JJVGmrmBS8-85kMIUEnPEtPIRtYKryblNEj/exec'
+
   const handleChange = (e) => setForm((p) => ({ ...p, [e.target.name]: e.target.value }))
-  const handleSubmit = (e) => { e.preventDefault(); setSubmitted(true) }
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setSubmitting(true)
+    try {
+      await fetch(SHEET_URL, {
+        method: 'POST',
+        body: JSON.stringify(form),
+      })
+    } catch {
+      // Salva mesmo se houver erro de CORS (o Apps Script recebe a request)
+    }
+    setSubmitting(false)
+    setSubmitted(true)
+  }
 
   const fields = [
     { id: 'nome', label: 'Nome', type: 'text', placeholder: 'Seu nome completo' },
@@ -45,12 +61,12 @@ export default function SignupForm() {
             variants={{ visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 0.2 } } }}>
 
             <span className="inline-block text-[0.6rem] tracking-ultra-wide uppercase text-terracotta font-light font-body mb-10">
-              Processo de admissão
+              Processo de adesão
             </span>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-navy">Candidate-se a membro</h2>
             <div className="my-8 w-10 h-[2px] bg-terracotta/40" />
             <p className="text-sm text-stone font-light leading-relaxed mb-12 font-body">
-              O acesso ao Sette Racket Club acontece por meio de um processo seletivo e requer investimento inicial para admissão como membro.
+              O acesso ao Sette Racket Club acontece por meio de um processo seletivo e requer investimento inicial para adesão como membro. Preencha o formulário e receba atualizações em primeira mão.
             </p>
 
             {submitted ? (
@@ -77,12 +93,12 @@ export default function SignupForm() {
                   </div>
                 ))}
                 <div className="pt-8">
-                  <motion.button type="submit" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-                    className="w-full sm:w-auto px-12 py-4 bg-navy text-cream text-[0.65rem] sm:text-xs tracking-ultra-wide uppercase font-light font-body hover:bg-terracotta transition-all duration-500 ease-out cursor-pointer border border-navy hover:border-terracotta">
-                    Solicitar admissão como membro
+                  <motion.button type="submit" disabled={submitting} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                    className="w-full sm:w-auto px-12 py-4 bg-navy text-cream text-[0.65rem] sm:text-xs tracking-ultra-wide uppercase font-light font-body hover:bg-terracotta transition-all duration-500 ease-out cursor-pointer border border-navy hover:border-terracotta disabled:opacity-50 disabled:cursor-not-allowed">
+                    {submitting ? 'Enviando...' : 'Solicitar adesão como membro'}
                   </motion.button>
                   <p className="mt-4 text-[0.65rem] text-stone/60 font-light font-body leading-relaxed max-w-sm">
-                    O clube também estará aberto ao público geral. A inscrição acima refere-se ao processo de admissão de membros.
+                    O clube também estará aberto ao público geral. A inscrição acima refere-se ao processo de adesão de membros.
                   </p>
                 </div>
               </form>
