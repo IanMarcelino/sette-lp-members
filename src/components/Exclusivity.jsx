@@ -1,6 +1,7 @@
 import { motion, useMotionValue, animate, useInView } from 'framer-motion'
 import { useEffect, useState, useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import floorPlan from '../assets/floor-plan.png'
 
 function Counter({ target, suffix = '', duration = 2 }) {
   const [count, setCount] = useState(0)
@@ -64,13 +65,32 @@ export default function Exclusivity() {
           </p>
         </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={controls}
+          variants={{ visible: { opacity: 1, y: 0, transition: { duration: 1.2, delay: 0.4 } } }}
+          className="mt-4 sm:mt-6 max-w-xl mx-auto"
+        >
+          <div className="relative">
+            <div className="absolute -inset-2 sm:-inset-3 border border-terracotta/20 pointer-events-none" />
+            <img
+              src={floorPlan}
+              alt="Planta do Sette Racket Club — quadras, área social e estacionamento"
+              className="relative w-full h-auto shadow-2xl"
+            />
+          </div>
+          <p className="mt-4 text-[0.6rem] sm:text-[0.65rem] tracking-ultra-wide uppercase text-stone/50 font-light font-body text-center">
+            Planta do clube
+          </p>
+        </motion.div>
+
         <motion.div initial={{ opacity: 0, y: 30 }} animate={controls}
-          variants={{ visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 0.4 } } }}
-          className="mt-16 sm:mt-20 grid grid-cols-3 gap-6 sm:gap-12 max-w-2xl mx-auto">
+          variants={{ visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 0.6 } } }}
+          className="mt-4 sm:mt-6 grid grid-cols-3 gap-6 sm:gap-12 max-w-2xl mx-auto">
           {[
             { target: 8, label: 'Quadras' },
-            { target: 40, label: 'Membros' },
-            { target: 1, label: 'Localização' },
+            { target: 25, label: 'Vagas de carro' },
+            { target: 1, label: 'Área VIP' },
           ].map((s, i) => (
             <div key={i} className="text-center">
               <div className="font-display text-4xl sm:text-5xl md:text-6xl font-light text-terracotta">
@@ -81,18 +101,6 @@ export default function Exclusivity() {
               </p>
             </div>
           ))}
-        </motion.div>
-
-        {/* Large subtle decorative 7 */}
-        <motion.div
-          className="mt-8 select-none pointer-events-none"
-          initial={{ opacity: 0 }}
-          animate={controls}
-          variants={{ visible: { opacity: 0.03, transition: { duration: 2, delay: 1 } } }}
-        >
-          <span className="font-display text-[10rem] md:text-[16rem] text-cream font-light leading-none">
-            40
-          </span>
         </motion.div>
       </div>
 
