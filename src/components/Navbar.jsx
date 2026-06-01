@@ -33,7 +33,7 @@ export default function Navbar() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 1 }}
       >
-        Candidatar-se a membro
+        Vagas encerradas
       </motion.a>
     </motion.nav>
   )

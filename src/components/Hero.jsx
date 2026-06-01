@@ -62,8 +62,8 @@ export default function Hero() {
         {/* Tagline */}
         <motion.p custom={1} variants={fade} initial="hidden" animate="visible"
           className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-cream italic leading-snug">
-          Aberto ao público.
-          <br />Reservado para membros.
+          Vagas encerradas.
+          <br />Agradecemos o interesse de todos.
         </motion.p>
 
         {/* Terracotta divider */}
@@ -73,16 +73,16 @@ export default function Hero() {
         {/* Body */}
         <motion.p custom={2.2} variants={fade} initial="hidden" animate="visible"
           className="text-sm sm:text-base text-stone font-light leading-relaxed max-w-md mx-auto font-body">
-          O Sette foi criado para ser um novo ponto de encontro do tênis em Fortaleza.
+          As vagas para adesão como membro do Sette Racket Club foram encerradas.
           <br className="hidden sm:block" />
-          Com acesso aberto ao público e um número limitado de membros com benefícios exclusivos.
+          Em breve, o Sette Club entrará em contato.
         </motion.p>
 
         {/* CTA */}
         <motion.div custom={2.8} variants={fade} initial="hidden" animate="visible">
           <a href="#admissao"
             className="inline-block mt-12 px-10 py-4 border border-terracotta text-terracotta text-[0.7rem] sm:text-xs tracking-ultra-wide uppercase font-body font-light hover:bg-terracotta hover:text-cream transition-all duration-500 ease-out">
-            Candidatar-se a membro
+            Saiba mais
           </a>
         </motion.div>
       </motion.div>
