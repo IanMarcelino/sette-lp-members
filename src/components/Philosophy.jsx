@@ -49,8 +49,8 @@ export default function Philosophy() {
         >
           <div className="mx-auto w-10 h-[2px] bg-terracotta/40 mb-10" />
           <blockquote className="font-display text-2xl sm:text-3xl md:text-4xl font-light text-navy italic">
-            "O jogo não é decidido no ponto.
-            <br />É decidido no <span className="text-terracotta">SETTE</span>."
+            “O jogo não é decidido no ponto.
+            <br />É decidido no <span className="text-terracotta">SETTE</span>.”
           </blockquote>
           <p className="mt-6 text-sm sm:text-base text-stone font-normal font-body tracking-wide">
             e aqui, começa o seu melhor set.

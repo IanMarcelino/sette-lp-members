@@ -1,0 +1,101 @@
+import { motion } from 'framer-motion'
+import PageHero from '../components/PageHero'
+import { useScrollReveal } from '../hooks/useScrollReveal'
+
+const eventos = [
+  { titulo: 'Torneios internos', desc: 'Competições entre membros ao longo da temporada, com ranking e premiação.' },
+  { titulo: 'Clínicas e workshops', desc: 'Treinos com profissionais convidados para evoluir técnica e jogo mental.' },
+  { titulo: 'Encontros sociais', desc: 'Noites temáticas, confraternizações e experiências exclusivas no lounge.' },
+]
+
+function Eventos() {
+  const [ref, controls] = useScrollReveal(0.15)
+  const container = { hidden: {}, visible: { transition: { staggerChildren: 0.15 } } }
+  const item = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] } },
+  }
+
+  return (
+    <section className="py-24 sm:py-32 px-6 bg-cream" ref={ref}>
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={controls}
+          variants={{ visible: { opacity: 1, y: 0, transition: { duration: 1 } } }}
+          className="text-center mb-16 sm:mb-20"
+        >
+          <span className="inline-block text-[0.6rem] tracking-ultra-wide uppercase text-terracotta font-light font-body mb-6">
+            Agenda
+          </span>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-navy">
+            Mais do que jogar — viver o clube
+          </h2>
+        </motion.div>
+
+        <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-8" variants={container} initial="hidden" animate={controls}>
+          {eventos.map((e) => (
+            <motion.div key={e.titulo} variants={item} className="p-8 sm:p-10 border border-sand/60 bg-warm">
+              <div className="w-8 h-[2px] bg-terracotta mb-6" />
+              <h3 className="font-display text-2xl font-medium text-navy mb-4">{e.titulo}</h3>
+              <p className="text-sm text-stone font-light leading-relaxed font-body">{e.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+function Gastronomia() {
+  const [ref, controls] = useScrollReveal(0.3)
+
+  return (
+    <section className="relative py-28 sm:py-40 px-6 bg-navy overflow-hidden" ref={ref}>
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+        }}
+      />
+      <div className="absolute top-0 left-0 w-full h-[2px] bg-terracotta" />
+      <motion.div
+        className="relative z-10 max-w-3xl mx-auto text-center"
+        initial={{ opacity: 0, y: 40 }}
+        animate={controls}
+        variants={{ visible: { opacity: 1, y: 0, transition: { duration: 1 } } }}
+      >
+        <span className="inline-block text-[0.6rem] tracking-ultra-wide uppercase text-terracotta font-light font-body mb-10">
+          Gastronomia & Lounge
+        </span>
+        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-cream leading-snug">
+          O ponto de encontro depois do jogo
+        </h2>
+        <div className="flex items-center justify-center gap-4 my-10">
+          <div className="w-8 h-px bg-cream/15" />
+          <div className="w-1.5 h-1.5 border border-terracotta/40 rotate-45" />
+          <div className="w-8 h-px bg-cream/15" />
+        </div>
+        <p className="font-display text-lg sm:text-xl md:text-2xl text-cream/60 italic font-light leading-relaxed max-w-2xl mx-auto">
+          Um bar e lounge pensados para prolongar a experiência — boa comida,
+          drinks bem-feitos e o clima certo para a convivência.
+        </p>
+      </motion.div>
+      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-terracotta" />
+    </section>
+  )
+}
+
+export default function Experiencia() {
+  return (
+    <>
+      <PageHero
+        eyebrow="Experiência"
+        title="A vida dentro do clube"
+        subtitle="Esporte, agenda social e gastronomia compõem o dia a dia do Sette."
+      />
+      <Eventos />
+      <Gastronomia />
+    </>
+  )
+}
