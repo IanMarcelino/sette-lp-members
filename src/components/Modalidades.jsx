@@ -52,13 +52,13 @@ export default function Modalidades() {
           variants={{ visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 0.2 } } }}
           className="text-center mb-16 sm:mb-20"
         >
-          <span className="inline-block text-[0.6rem] tracking-ultra-wide uppercase text-terracotta font-light font-body mb-6">
+          <span className="inline-block text-[0.65rem] tracking-ultra-wide uppercase text-terracotta-on-dark font-light font-body mb-6">
             O universo Sette
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-cream">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-cream text-balance">
             Muito além da quadra
           </h2>
-          <div className="mx-auto mt-8 w-16 h-[2px] bg-terracotta" />
+          <div className="mx-auto mt-8 w-16 h-[2px] bg-terracotta-on-dark" />
         </motion.div>
 
         <motion.div
@@ -71,21 +71,24 @@ export default function Modalidades() {
             <motion.div key={m.label} variants={item}>
               <Link
                 to={m.to}
-                className="group block relative overflow-hidden border border-cream/10 hover:border-terracotta/50 transition-colors duration-500"
+                className="group block relative overflow-hidden border border-cream/20 hover:border-terracotta-on-dark/60 transition-colors duration-500"
               >
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <img
                     src={m.img}
                     alt={m.label}
                     loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
+                    decoding="async"
+                    width={1100}
+                    height={1100}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/50 to-transparent" />
 
                   <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-7">
-                    <div className="w-8 h-[2px] bg-terracotta mb-4 transition-all duration-500 group-hover:w-12" />
+                    <div className="w-8 h-[2px] bg-terracotta-on-dark mb-4 transition-all duration-500 group-hover:w-12" />
                     <h3 className="font-display text-2xl font-light text-cream">{m.label}</h3>
-                    <p className="mt-3 text-xs sm:text-sm text-cream/60 font-light leading-relaxed font-body">
+                    <p className="mt-3 text-xs sm:text-sm text-cream/75 font-light leading-relaxed font-body">
                       {m.desc}
                     </p>
                   </div>

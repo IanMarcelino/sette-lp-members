@@ -31,6 +31,10 @@ export default [
       'react/jsx-no-target-blank': 'off',
       // O projeto não usa prop-types — validação de tipos não é o padrão aqui.
       'react/prop-types': 'off',
+      // A regra sugere `fetchPriority`, mas o react-dom 18.3 não conhece essa
+      // prop: em camelCase ela vira um aviso de prop desconhecida, e só a forma
+      // minúscula chega ao DOM limpa. Trocar quando subir para o React 19.
+      'react/no-unknown-property': ['error', { ignore: ['fetchpriority'] }],
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },

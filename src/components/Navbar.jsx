@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import badgeWhite from '../assets/badge-white.svg'
 import logoHorizontal from '../assets/logo-horizontal-white.svg'
 
@@ -16,28 +16,45 @@ export default function Navbar() {
   const bgOpacity = useTransform(scrollY, [0, 200], [0, 0.95])
   const [open, setOpen] = useState(false)
   const location = useLocation()
+  const semMovimento = useReducedMotion()
+  const botaoRef = useRef(null)
 
   // Em páginas internas (não a Home) o topo já começa escuro para legibilidade.
   const solidByDefault = location.pathname !== '/'
 
+  const fundo = useTransform(
+    bgOpacity,
+    (v) => `rgba(29, 41, 56, ${solidByDefault ? Math.max(v, 0.95) : v})`,
+  )
+
+  // Esc fecha o menu e devolve o foco ao botão que o abriu.
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        setOpen(false)
+        botaoRef.current?.focus()
+      }
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [open])
+
   return (
     <motion.nav
+      aria-label="Navegação principal"
       className="fixed top-0 left-0 right-0 z-50 px-6 sm:px-10 py-4 flex items-center justify-between"
-      style={{
-        backgroundColor: useTransform(
-          bgOpacity,
-          (v) => `rgba(29, 41, 56, ${solidByDefault ? Math.max(v, 0.95) : v})`,
-        ),
-        backdropFilter: 'blur(12px)',
-      }}
+      style={{ backgroundColor: fundo, backdropFilter: 'blur(12px)' }}
     >
       {/* Marca */}
       <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
         {/* Símbolo isolado no mobile; lockup oficial completo a partir de sm */}
-        <img src={badgeWhite} alt="Sette Racket Club" className="w-8 h-8 sm:hidden" />
+        <img src={badgeWhite} alt="Sette Racket Club — início" width={32} height={32} className="w-8 h-8 sm:hidden" />
         <img
           src={logoHorizontal}
-          alt="Sette Racket Club"
+          alt="Sette Racket Club — início"
+          width={160}
+          height={36}
           className="hidden sm:block h-9 w-auto"
         />
       </Link>
@@ -49,8 +66,8 @@ export default function Navbar() {
             key={l.to}
             to={l.to}
             className={({ isActive }) =>
-              `text-[0.6rem] tracking-ultra-wide uppercase font-light font-body transition-colors duration-300 ${
-                isActive ? 'text-terracotta' : 'text-cream/70 hover:text-cream'
+              `text-[0.65rem] tracking-ultra-wide uppercase font-light font-body transition-colors duration-300 ${
+                isActive ? 'text-terracotta-on-dark' : 'text-cream/75 hover:text-cream'
               }`
             }
           >
@@ -59,16 +76,20 @@ export default function Navbar() {
         ))}
       </div>
 
-      {/* Botão mobile */}
+      {/* Botão mobile. O padding negativo amplia a área de toque para 44×44
+          sem mexer no desenho das três linhas. */}
       <button
+        ref={botaoRef}
         type="button"
-        aria-label="Abrir menu"
+        aria-label={open ? 'Fechar menu' : 'Abrir menu'}
+        aria-expanded={open}
+        aria-controls="menu-mobile"
         onClick={() => setOpen((v) => !v)}
-        className="md:hidden flex flex-col items-end gap-1.5 w-7"
+        className="md:hidden flex flex-col items-end justify-center gap-1.5 w-7 h-7 p-3 -m-3 box-content"
       >
         <motion.span
           animate={open ? { rotate: 45, y: 6, width: '100%' } : { rotate: 0, y: 0, width: '100%' }}
-          className="block h-px bg-cream origin-center"
+          className="block h-px w-full bg-cream origin-center"
         />
         <motion.span
           animate={open ? { opacity: 0 } : { opacity: 1, width: '70%' }}
@@ -84,11 +105,15 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            id="menu-mobile"
+            initial={semMovimento ? { opacity: 0 } : { opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            exit={semMovimento ? { opacity: 0 } : { opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-navy-deep/98 backdrop-blur-lg border-t border-terracotta/20 px-6 py-8 flex flex-col gap-6"
+            /* Era `bg-navy-deep/98` — valor fora da escala do Tailwind, então a
+               classe nunca era gerada e o painel ficava sem fundo sobre a foto
+               do Hero. `/95` existe e é indistinguível a olho nu. */
+            className="md:hidden absolute top-full left-0 right-0 bg-navy-deep/95 backdrop-blur-lg border-t border-terracotta/20 px-6 py-6 flex flex-col"
           >
             {links.map((l) => (
               <NavLink
@@ -96,8 +121,8 @@ export default function Navbar() {
                 to={l.to}
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
-                  `text-xs tracking-ultra-wide uppercase font-light font-body ${
-                    isActive ? 'text-terracotta' : 'text-cream/80'
+                  `py-3 text-xs tracking-ultra-wide uppercase font-light font-body ${
+                    isActive ? 'text-terracotta-on-dark' : 'text-cream/85'
                   }`
                 }
               >

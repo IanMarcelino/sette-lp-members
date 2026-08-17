@@ -18,7 +18,7 @@ export default function Philosophy() {
           animate={controls}
           variants={{ visible: { opacity: 1, y: 0, transition: { duration: 1 } } }}
         >
-          <span className="inline-block text-[0.6rem] tracking-ultra-wide uppercase text-terracotta font-light font-body mb-10">
+          <span className="inline-block text-[0.65rem] tracking-ultra-wide uppercase text-terracotta font-light font-body mb-10">
             Por que Sette?
           </span>
           <p className="font-display text-xl sm:text-2xl md:text-3xl font-light text-navy leading-relaxed mb-8">

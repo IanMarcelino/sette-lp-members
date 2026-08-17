@@ -22,25 +22,34 @@ export default function Footer() {
         variants={{ visible: { opacity: 1, y: 0, transition: { duration: 1 } } }}
       >
         <Link to="/" className="inline-block">
-          <img src={badgeWhite} alt="Sette Racket Club" className="w-14 h-14 mx-auto mb-6 opacity-40" />
+          <img
+            src={badgeWhite}
+            alt="Sette Racket Club — início"
+            width={56}
+            height={56}
+            loading="lazy"
+            className="w-14 h-14 mx-auto mb-6 opacity-60"
+          />
         </Link>
-        <p className="font-display text-lg tracking-[0.15em] text-cream/80 font-light">Sette Racket Club</p>
-        <p className="mt-2 text-[0.6rem] tracking-ultra-wide uppercase text-stone/50 font-light font-body">Fortaleza — CE</p>
+        <p className="font-display text-lg tracking-[0.15em] text-cream/85 font-light">Sette Racket Club</p>
+        <p className="mt-2 text-[0.65rem] tracking-ultra-wide uppercase text-stone-light/80 font-light font-body">Fortaleza — CE</p>
 
-        <nav className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+        {/* py-3 dá aos links a altura de toque mínima sem abrir buraco no
+            desenho — o gap vertical foi reduzido na mesma medida. */}
+        <nav aria-label="Rodapé" className="mt-8 flex flex-wrap items-center justify-center gap-x-8">
           {navLinks.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              className="text-[0.6rem] tracking-ultra-wide uppercase text-cream/50 hover:text-terracotta transition-colors duration-300 font-light font-body"
+              className="py-3 text-[0.65rem] tracking-ultra-wide uppercase text-cream/70 hover:text-terracotta-on-dark transition-colors duration-300 font-light font-body"
             >
               {l.label}
             </Link>
           ))}
         </nav>
 
-        <div className="mt-10 w-8 h-[2px] bg-terracotta/30 mx-auto" />
-        <p className="mt-6 text-[0.55rem] tracking-[0.2em] text-stone/30 font-light font-body">
+        <div className="mt-8 w-8 h-[2px] bg-terracotta/40 mx-auto" />
+        <p className="mt-6 text-[0.65rem] tracking-[0.2em] text-stone-light/70 font-light font-body">
           &copy; {new Date().getFullYear()} Sette Racket Club. Todos os direitos reservados.
         </p>
       </motion.div>

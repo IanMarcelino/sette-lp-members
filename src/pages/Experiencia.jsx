@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import PageHero from '../components/PageHero'
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import Grain from '../components/Grain'
 
 const eventos = [
   { titulo: 'Torneios internos', desc: 'Competições entre membros ao longo da temporada, com ranking e premiação.' },
@@ -25,10 +26,10 @@ function Eventos() {
           variants={{ visible: { opacity: 1, y: 0, transition: { duration: 1 } } }}
           className="text-center mb-16 sm:mb-20"
         >
-          <span className="inline-block text-[0.6rem] tracking-ultra-wide uppercase text-terracotta font-light font-body mb-6">
+          <span className="inline-block text-[0.65rem] tracking-ultra-wide uppercase text-terracotta font-light font-body mb-6">
             Agenda
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-navy">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-navy text-balance">
             Mais do que jogar — viver o clube
           </h2>
         </motion.div>
@@ -52,12 +53,7 @@ function Gastronomia() {
 
   return (
     <section className="relative py-28 sm:py-40 px-6 bg-navy overflow-hidden" ref={ref}>
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-        }}
-      />
+      <Grain />
       <div className="absolute top-0 left-0 w-full h-[2px] bg-terracotta" />
       <motion.div
         className="relative z-10 max-w-3xl mx-auto text-center"
@@ -65,18 +61,18 @@ function Gastronomia() {
         animate={controls}
         variants={{ visible: { opacity: 1, y: 0, transition: { duration: 1 } } }}
       >
-        <span className="inline-block text-[0.6rem] tracking-ultra-wide uppercase text-terracotta font-light font-body mb-10">
+        <span className="inline-block text-[0.65rem] tracking-ultra-wide uppercase text-terracotta-on-dark font-light font-body mb-10">
           Gastronomia & Lounge
         </span>
-        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-cream leading-snug">
+        <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-cream leading-snug text-balance">
           O ponto de encontro depois do jogo
         </h2>
         <div className="flex items-center justify-center gap-4 my-10">
-          <div className="w-8 h-px bg-cream/15" />
-          <div className="w-1.5 h-1.5 border border-terracotta/40 rotate-45" />
-          <div className="w-8 h-px bg-cream/15" />
+          <div className="w-8 h-px bg-cream/35" />
+          <div className="w-1.5 h-1.5 border border-terracotta-on-dark/60 rotate-45" />
+          <div className="w-8 h-px bg-cream/35" />
         </div>
-        <p className="font-display text-lg sm:text-xl md:text-2xl text-cream/60 italic font-light leading-relaxed max-w-2xl mx-auto">
+        <p className="font-display text-lg sm:text-xl md:text-2xl text-cream/75 italic font-light leading-relaxed max-w-2xl mx-auto">
           Um bar e lounge pensados para prolongar a experiência — boa comida,
           drinks bem-feitos e o clima certo para a convivência.
         </p>

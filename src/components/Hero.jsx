@@ -1,7 +1,16 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import badgeWhite from '../assets/badge-white.svg'
+// Direção de arte por orientação: a vista aérea é retrato e o centro dela é
+// saibro liso, então num viewport landscape o corte entrega um retângulo chapado.
+// A área social é landscape, clara e cheia de estrutura (rede, palmeiras, toldo),
+// então sobrevive ao véu navy — um interior de crepúsculo viraria preto.
+import heroRetratoAvif from '../assets/court-aerial.avif'
+import heroRetratoWebp from '../assets/court-aerial.webp'
+import heroPaisagemAvif from '../assets/carousel-2.avif'
+import heroPaisagemWebp from '../assets/carousel-2.webp'
+import Grain from './Grain'
 
 const fade = {
   hidden: { opacity: 0, y: 30 },
@@ -12,8 +21,15 @@ const fade = {
   }),
 }
 
+// Sem movimento: a entrada continua existindo, só perde o deslocamento.
+const fadeOnly = {
+  hidden: { opacity: 0 },
+  visible: (i) => ({ opacity: 1, transition: { delay: i * 0.15, duration: 0.5 } }),
+}
+
 export default function Hero() {
   const ref = useRef(null)
+  const semMovimento = useReducedMotion()
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
@@ -22,77 +38,98 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
   const imgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15])
 
+  const variants = semMovimento ? fadeOnly : fade
+  // Parallax e zoom são exatamente o que incomoda quem tem sensibilidade
+  // vestibular: o conteúdo se move em velocidade diferente do scroll.
+  const parallax = semMovimento ? undefined : { y, opacity }
+  const zoom = semMovimento ? undefined : { scale: imgScale }
+
   return (
     <section
       ref={ref}
-      className="relative min-h-svh flex flex-col items-center justify-center overflow-hidden"
+      className="relative min-h-svh flex flex-col items-center justify-center overflow-hidden bg-navy"
     >
-      {/* Background image with parallax zoom */}
-      <motion.div className="absolute inset-0 z-0" style={{ scale: imgScale }}>
-        <img
-          src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=2000&q=80"
-          alt=""
-          className="w-full h-full object-cover"
-          aria-hidden="true"
-        />
+      {/* LCP da página: sem lazy, prioridade alta. */}
+      <motion.div className="absolute inset-0 z-0" style={zoom}>
+        <picture className="contents">
+          <source media="(orientation: portrait)" srcSet={heroRetratoAvif} type="image/avif" />
+          <source media="(orientation: portrait)" srcSet={heroRetratoWebp} type="image/webp" />
+          <source srcSet={heroPaisagemAvif} type="image/avif" />
+          <source srcSet={heroPaisagemWebp} type="image/webp" />
+          <img
+            src={heroPaisagemWebp}
+            alt=""
+            aria-hidden="true"
+            width={2400}
+            height={1340}
+            fetchpriority="high"
+            decoding="async"
+            className="w-full h-full object-cover object-center"
+          />
+        </picture>
       </motion.div>
 
-      {/* Dark cinematic overlay */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-navy/80 via-navy/70 to-navy/90" />
+      {/* Véu base: deixa a fotografia respirar como atmosfera. */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-navy/80 via-navy/70 to-navy/95" />
 
-      {/* Grain overlay */}
-      <div className="absolute inset-0 z-[2] opacity-[0.03]" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-      }} />
+      {/* Scrim radial sob a coluna de texto — ver `.hero-scrim` no index.css.
+          Só entra em landscape: em retrato a coluna de texto ocupa quase toda a
+          largura, então a elipse cobriria a foto inteira em vez de destacá-la. */}
+      <div aria-hidden="true" className="hero-scrim absolute inset-0 z-[1]" />
 
-      {/* Top terracotta line */}
+      <Grain className="z-[2]" />
+
+      {/* Régua terracota do topo */}
       <motion.div
         className="absolute top-0 left-0 w-full h-[2px] bg-terracotta z-10"
-        initial={{ scaleX: 0 }}
+        initial={{ scaleX: semMovimento ? 1 : 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 1.5, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
         style={{ transformOrigin: 'left' }}
       />
 
-      <motion.div style={{ y, opacity }} className="relative z-10 text-center px-6">
-        {/* Badge */}
-        <motion.div custom={0} variants={fade} initial="hidden" animate="visible" className="flex justify-center mb-10">
-          <img src={badgeWhite} alt="Sette Racket Club" className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40" />
+      <motion.div style={parallax} className="relative z-10 w-full max-w-4xl text-center px-6">
+        <motion.div custom={0} variants={variants} initial="hidden" animate="visible" className="flex justify-center mb-10">
+          <img
+            src={badgeWhite}
+            alt=""
+            aria-hidden="true"
+            width={144}
+            height={144}
+            className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40"
+          />
         </motion.div>
 
-        {/* Eyebrow */}
-        <motion.span custom={0.8} variants={fade} initial="hidden" animate="visible"
-          className="block text-[0.6rem] sm:text-xs tracking-ultra-wide uppercase text-terracotta font-light font-body mb-6">
+        <motion.span custom={0.8} variants={variants} initial="hidden" animate="visible"
+          className="block text-[0.7rem] sm:text-xs tracking-ultra-wide uppercase text-terracotta-on-photo font-light font-body mb-6">
           Fortaleza · Ceará
         </motion.span>
 
-        {/* Nome do clube */}
-        <motion.h1 custom={1.1} variants={fade} initial="hidden" animate="visible"
-          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light text-cream tracking-wide leading-[0.95]">
+        <motion.h1 custom={1.1} variants={variants} initial="hidden" animate="visible"
+          /* "Sette Racket Club" com tracking-wide não cabia em 390px: a linha
+             vazava a viewport. Aqui ela quebra em duas e o tracking só abre a
+             partir de sm, onde há largura para ele. */
+          className="font-display text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light text-cream tracking-normal sm:tracking-wide leading-[1.02] sm:leading-[0.95] text-balance">
           Sette Racket Club
         </motion.h1>
 
-        {/* Terracotta divider */}
-        <motion.div custom={1.6} variants={fade} initial="hidden" animate="visible"
-          className="mx-auto my-8 sm:my-10 w-16 h-[2px] bg-terracotta" />
+        <motion.div custom={1.6} variants={variants} initial="hidden" animate="visible"
+          className="mx-auto my-8 sm:my-10 w-16 h-[2px] bg-terracotta-on-photo" />
 
-        {/* Tagline */}
-        <motion.p custom={1.9} variants={fade} initial="hidden" animate="visible"
-          className="font-display text-xl sm:text-2xl md:text-3xl font-light text-cream/80 italic leading-snug max-w-2xl mx-auto">
+        <motion.p custom={1.9} variants={variants} initial="hidden" animate="visible"
+          className="font-display text-xl sm:text-2xl md:text-3xl font-light text-cream/80 italic leading-snug max-w-2xl mx-auto text-balance">
           Onde esporte, arquitetura e experiência se encontram.
         </motion.p>
 
-        {/* Body */}
-        <motion.p custom={2.3} variants={fade} initial="hidden" animate="visible"
-          className="mt-6 text-sm sm:text-base text-stone font-light leading-relaxed max-w-md mx-auto font-body">
+        <motion.p custom={2.3} variants={variants} initial="hidden" animate="visible"
+          className="mt-6 text-sm sm:text-base text-stone-light font-light leading-relaxed max-w-md mx-auto font-body">
           Um clube de raquete pensado para quem valoriza performance, convívio e bom gosto.
         </motion.p>
 
-        {/* CTAs */}
-        <motion.div custom={2.8} variants={fade} initial="hidden" animate="visible"
+        <motion.div custom={2.8} variants={variants} initial="hidden" animate="visible"
           className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link to="/o-clube"
-            className="inline-block w-full sm:w-auto px-10 py-4 border border-terracotta text-terracotta text-[0.7rem] sm:text-xs tracking-ultra-wide uppercase font-body font-light hover:bg-terracotta hover:text-cream transition-all duration-500 ease-out">
+            className="inline-block w-full sm:w-auto px-10 py-4 border border-terracotta-on-photo text-terracotta-on-photo text-[0.7rem] sm:text-xs tracking-ultra-wide uppercase font-body font-light hover:bg-terracotta-on-photo hover:text-navy-deep transition-all duration-500 ease-out">
             Conheça o clube
           </Link>
           <Link to="/contato"
@@ -102,23 +139,23 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Indicador de scroll. O laço infinito é o item que a WCAG 2.2.2 alcança,
+          então sem movimento ele vira uma marca estática. */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 3.5, duration: 1 }}
+        transition={{ delay: semMovimento ? 0 : 3.5, duration: 1 }}
       >
-        <span className="text-[0.55rem] tracking-ultra-wide uppercase text-stone/60 font-light font-body">Scroll</span>
+        <span className="text-[0.65rem] tracking-ultra-wide uppercase text-cream/90 font-light font-body">Scroll</span>
         <motion.div
-          className="w-px h-8 bg-terracotta/40"
-          animate={{ scaleY: [0, 1, 0] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="w-px h-8 bg-terracotta-on-photo/70"
+          animate={semMovimento ? { scaleY: 1 } : { scaleY: [0, 1, 0] }}
+          transition={semMovimento ? { duration: 0 } : { duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
           style={{ transformOrigin: 'top' }}
         />
       </motion.div>
 
-      {/* Bottom gradient fade to cream */}
       <div className="absolute bottom-0 left-0 w-full h-8 z-[3] bg-gradient-to-t from-cream/50 to-transparent" />
     </section>
   )

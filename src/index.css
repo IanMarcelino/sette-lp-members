@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fonte única da paleta. O Tailwind consome os mesmos valores via
+   tailwind.config.js; aqui eles existem para as superfícies que o Tailwind não
+   alcança (seleção de texto, cursor, scrollbar, anel de foco). */
+:root {
+  --navy: #1d2938;
+  --navy-deep: #141d28;
+  --terracotta: #97533e;
+  --terracotta-on-dark: #c3806c;
+  --cream: #faf8f5;
+  --sand: #e8e0d8;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -11,15 +23,40 @@
 
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    background-color: #FAF8F5;
-    color: #1D2938;
+    background-color: var(--cream);
+    color: var(--navy);
     overflow-x: hidden;
     margin: 0;
   }
 
   ::selection {
-    background-color: #97533E;
-    color: #FAF8F5;
+    background-color: var(--terracotta);
+    color: var(--cream);
+  }
+
+  /* O cursor de texto também é uma superfície de marca. */
+  :where(input, textarea) {
+    caret-color: var(--terracotta);
+  }
+
+  /* Foco de teclado desenhado. O anel padrão do navegador quase some sobre
+     navy, então cada superfície ganha o seu: terracota claro no escuro,
+     terracota cheio no claro. Só aparece na navegação por teclado. */
+  :focus-visible {
+    outline: 2px solid var(--terracotta);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  .bg-navy :focus-visible,
+  .bg-navy-deep :focus-visible,
+  nav :focus-visible {
+    outline-color: var(--terracotta-on-dark);
+  }
+
+  /* Sublinhado que não corta a descendente. */
+  a {
+    text-underline-offset: 0.2em;
   }
 }
 
@@ -27,14 +64,59 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #1D2938;
+  background: var(--navy);
 }
 ::-webkit-scrollbar-thumb {
-  background: #97533E;
+  background: var(--terracotta);
   border-radius: 3px;
+}
+/* Firefox */
+html {
+  scrollbar-color: var(--terracotta) var(--navy);
+  scrollbar-width: thin;
+}
+
+/* Scrim do hero.
+   Em landscape a coluna de texto ocupa o miolo e sobra foto nas bordas: a
+   elipse garante contraste em AA no centro sem achatar a imagem. Em retrato o
+   texto ocupa quase toda a largura, então a mesma elipse apagaria a foto — ali
+   o véu base já entrega o contraste medido. */
+.hero-scrim {
+  background: none;
+}
+
+@media (orientation: landscape) {
+  .hero-scrim {
+    background: radial-gradient(
+      ellipse 72% 66% at 50% 48%,
+      rgba(20, 29, 40, 0.9) 0%,
+      rgba(20, 29, 40, 0.8) 45%,
+      rgba(20, 29, 40, 0.4) 72%,
+      transparent 92%
+    );
+  }
 }
 
 .brand-rule {
   height: 2px;
-  background: linear-gradient(90deg, #97533E 0%, #97533E 70%, transparent 100%);
+  background: linear-gradient(90deg, var(--terracotta) 0%, var(--terracotta) 70%, transparent 100%);
+}
+
+/* Movimento reduzido.
+   Deliberadamente NÃO é um `animation: none !important` global — isso mataria o
+   feedback de hover e foco junto com o resto. O que sai aqui é só o que causa
+   desconforto vestibular: o scroll suave e as animações em laço infinito.
+   O movimento grande (parallax, reveals, o pin do carrossel) é desligado no JS
+   via `useReducedMotion`, onde dá para trocar deslocamento por fade em vez de
+   simplesmente sumir com a transição de estado. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-iteration-count: 1 !important;
+  }
 }

@@ -2,7 +2,8 @@ import { motion } from 'framer-motion'
 import PageHero from '../components/PageHero'
 import Philosophy from '../components/Philosophy'
 import { useScrollReveal } from '../hooks/useScrollReveal'
-import lifestyle from '../assets/lifestyle.png'
+import lifestyleAvif from '../assets/lifestyle.avif'
+import lifestyleWebp from '../assets/lifestyle.webp'
 
 function LifestyleBlock() {
   const [ref, controls] = useScrollReveal(0.2)
@@ -15,10 +16,10 @@ function LifestyleBlock() {
           animate={controls}
           variants={{ visible: { opacity: 1, x: 0, transition: { duration: 1 } } }}
         >
-          <span className="inline-block text-[0.6rem] tracking-ultra-wide uppercase text-terracotta font-light font-body mb-6">
+          <span className="inline-block text-[0.65rem] tracking-ultra-wide uppercase text-terracotta font-light font-body mb-6">
             Propósito
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-navy leading-snug">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-navy leading-snug text-balance">
             Um clube pensado como extensão de um estilo de vida
           </h2>
           <div className="w-10 h-[2px] bg-terracotta/40 my-8" />
@@ -36,7 +37,19 @@ function LifestyleBlock() {
           className="relative"
         >
           <div className="absolute -inset-3 border border-terracotta/20 pointer-events-none" />
-          <img src={lifestyle} alt="Lifestyle Sette Racket Club" className="relative w-full h-auto shadow-2xl" />
+          <picture className="contents">
+            <source srcSet={lifestyleAvif} type="image/avif" />
+            <source srcSet={lifestyleWebp} type="image/webp" />
+            <img
+              src={lifestyleWebp}
+              alt="Jogador em quadra de saibro no Sette Racket Club"
+              width={1291}
+              height={1291}
+              loading="lazy"
+              decoding="async"
+              className="relative w-full h-auto shadow-2xl"
+            />
+          </picture>
         </motion.div>
       </div>
     </section>

@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Masters de imagem/SVG antes da otimização — recuperáveis pelo histórico.
+# Reconversão: pnpm images
+src/assets/originals/

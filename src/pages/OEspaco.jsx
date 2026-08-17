@@ -3,18 +3,16 @@ import PageHero from '../components/PageHero'
 import Exclusivity from '../components/Exclusivity'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
+// Duas modalidades, alinhadas com a Home e com o carrossel. Beach Tennis
+// aparecia só aqui e em nenhum outro ponto do site.
 const modalidades = [
-  {
-    nome: 'Padel',
-    desc: 'Quadras de padrão internacional, com vidro temperado e iluminação profissional para jogo em qualquer horário.',
-  },
-  {
-    nome: 'Beach Tennis',
-    desc: 'Areia nivelada e drenagem premium, prontas para treinos casuais e torneios.',
-  },
   {
     nome: 'Tênis',
     desc: 'Saibro e piso rápido, com a manutenção e o cuidado de um clube de alto nível.',
+  },
+  {
+    nome: 'Padel',
+    desc: 'Quadras de padrão internacional, com vidro temperado e iluminação profissional para jogo em qualquer horário.',
   },
 ]
 
@@ -35,16 +33,16 @@ function Modalidades() {
           variants={{ visible: { opacity: 1, y: 0, transition: { duration: 1 } } }}
           className="text-center mb-16 sm:mb-20"
         >
-          <span className="inline-block text-[0.6rem] tracking-ultra-wide uppercase text-terracotta font-light font-body mb-6">
+          <span className="inline-block text-[0.65rem] tracking-ultra-wide uppercase text-terracotta font-light font-body mb-6">
             Modalidades
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-navy">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-navy text-balance">
             Esporte em alto padrão
           </h2>
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
           variants={container}
           initial="hidden"
           animate={controls}
@@ -55,7 +53,10 @@ function Modalidades() {
               variants={item}
               className="group p-8 sm:p-10 bg-warm border border-sand/60 hover:border-terracotta/40 transition-all duration-500"
             >
-              <span className="font-display text-5xl font-light text-sand/60 group-hover:text-terracotta/30 transition-colors duration-500">
+              <span
+                aria-hidden="true"
+                className="font-display text-5xl font-light text-sand-deep/70 group-hover:text-terracotta/40 transition-colors duration-500"
+              >
                 {String(i + 1).padStart(2, '0')}
               </span>
               <div className="w-8 h-[2px] bg-terracotta my-6 transition-all duration-500 group-hover:w-12" />
