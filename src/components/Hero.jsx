@@ -97,7 +97,7 @@ export default function Hero() {
           </Link>
           <Link to="/contato"
             className="inline-block w-full sm:w-auto px-10 py-4 bg-terracotta border border-terracotta text-cream text-[0.7rem] sm:text-xs tracking-ultra-wide uppercase font-body font-light hover:bg-terracotta-light hover:border-terracotta-light transition-all duration-500 ease-out">
-            Agende uma visita
+            Agende um horário
           </Link>
         </motion.div>
       </motion.div>

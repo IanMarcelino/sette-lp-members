@@ -117,7 +117,7 @@ function Hero() {
             className="inline-flex items-center gap-3 mt-10 px-9 py-4 bg-terracotta text-cream text-[0.7rem] tracking-ultra-wide uppercase font-body font-light hover:bg-terracotta-light transition-all duration-500"
           >
             <IconWhatsapp className="w-4 h-4" />
-            Agende uma visita
+            Agende um horário
           </a>
         </motion.div>
       </div>
