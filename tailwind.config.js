@@ -34,6 +34,13 @@ export default {
         sand: '#E8E0D8',
         'sand-deep': '#BDA68F', // numerais ornamentais — decorativo, sempre aria-hidden
 
+        // Papel das pranchas ilustradas de "O Espaço". Adotar o próprio fundo
+        // do original como campo da seção é o que faz as aquarelas assentarem
+        // sem borda visível. É mais quente que `warm`, então o texto corrido
+        // precisa de um tom próprio: `stone` cai para 4,42:1 aqui.
+        paper: '#F5EEDC',
+        'paper-ink': '#736960', // 4,65:1 no papel · 5,08:1 no cream · 4,75:1 no warm
+
         // Mesma lógica do terracota: `stone` é o cinza-quente para fundo claro
         // (4.51:1 no warm, o pior caso) e `stone-light` para fundo escuro,
         // calibrado para continuar passando em AA mesmo a 70% de opacidade.

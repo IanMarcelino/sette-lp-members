@@ -2,8 +2,6 @@ import { motion, useMotionValue, animate, useInView, useReducedMotion } from 'fr
 import { useEffect, useState, useRef } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import Grain from './Grain'
-import floorPlanAvif from '../assets/floor-plan.avif'
-import floorPlanWebp from '../assets/floor-plan.webp'
 
 function Counter({ target, suffix = '', duration = 2 }) {
   const semMovimento = useReducedMotion()
@@ -35,8 +33,9 @@ export default function Exclusivity() {
 
   return (
     <section className="relative py-28 sm:py-40 px-6 bg-navy overflow-hidden" ref={ref}>
-      {/* A textura de fundo era uma foto do Unsplash a 5% de opacidade —
-          uma requisição externa para algo que o grão já entrega. */}
+      {/* A planta técnica saiu daqui: a planta aquarelada do percurso, logo
+          acima nesta página, mostra o mesmo terreno com muito mais informação.
+          Duas plantas na mesma página competiam entre si. */}
       <Grain />
       <div className="absolute top-0 left-0 w-full h-[2px] bg-terracotta" />
 
@@ -63,36 +62,9 @@ export default function Exclusivity() {
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={controls}
-          variants={{ visible: { opacity: 1, y: 0, transition: { duration: 1.2, delay: 0.4 } } }}
-          className="mt-10 sm:mt-14 max-w-xl mx-auto"
-        >
-          <div className="relative">
-            <div className="absolute -inset-2 sm:-inset-3 border border-terracotta/30 pointer-events-none" />
-            <picture className="contents">
-              <source srcSet={floorPlanAvif} type="image/avif" />
-              <source srcSet={floorPlanWebp} type="image/webp" />
-              <img
-                src={floorPlanWebp}
-                alt="Planta do Sette Racket Club — quadras, área social e estacionamento"
-                width={1400}
-                height={1336}
-                loading="lazy"
-                decoding="async"
-                className="relative w-full h-auto shadow-2xl"
-              />
-            </picture>
-          </div>
-          <p className="mt-4 text-[0.65rem] tracking-ultra-wide uppercase text-stone-light/80 font-light font-body text-center">
-            Planta do clube
-          </p>
-        </motion.div>
-
         <motion.div initial={{ opacity: 0, y: 30 }} animate={controls}
           variants={{ visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 0.6 } } }}
-          className="mt-10 sm:mt-14 grid grid-cols-3 gap-4 sm:gap-12 max-w-2xl mx-auto">
+          className="mt-12 sm:mt-16 grid grid-cols-3 gap-4 sm:gap-12 max-w-2xl mx-auto">
           {[
             { target: 8, label: 'Quadras' },
             { target: 25, label: 'Vagas de carro' },
