@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import badgeWhite from '../assets/badge-white.svg'
+import logoHorizontal from '../assets/logo-horizontal-white.svg'
 
 const links = [
   { to: '/o-clube', label: 'O Clube' },
@@ -32,10 +33,13 @@ export default function Navbar() {
     >
       {/* Marca */}
       <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-        <img src={badgeWhite} alt="Sette" className="w-8 h-8 sm:w-9 sm:h-9" />
-        <span className="hidden sm:block text-[0.6rem] tracking-ultra-wide uppercase text-cream/70 font-light font-body">
-          Sette Racket Club
-        </span>
+        {/* Símbolo isolado no mobile; lockup oficial completo a partir de sm */}
+        <img src={badgeWhite} alt="Sette Racket Club" className="w-8 h-8 sm:hidden" />
+        <img
+          src={logoHorizontal}
+          alt="Sette Racket Club"
+          className="hidden sm:block h-9 w-auto"
+        />
       </Link>
 
       {/* Navegação desktop */}

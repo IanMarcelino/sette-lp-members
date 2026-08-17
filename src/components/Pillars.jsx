@@ -2,22 +2,31 @@ import { motion } from 'framer-motion'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import Carousel from './Carousel'
 
+import obra from '../assets/obra.webp'
+import tenis from '../assets/tenis.webp'
+import lifestyle from '../assets/lifestyle.webp'
+import clube from '../assets/clube.webp'
+
 const pillars = [
   {
     title: 'Arquitetura contemporânea',
     desc: 'Linhas fortes, paleta navy + terracota, materiais honestos. Ambientes que respiram elite esportiva.',
+    img: obra,
   },
   {
     title: 'Quadras de padrão internacional',
     desc: 'Cada ponto pensado para performance — do quique ao jogo mental.',
+    img: tenis,
   },
   {
     title: 'Espaços sociais que vivem o tênis',
     desc: 'Lounge, recepção, lockers, circulação: tudo desenhado como extensão da quadra.',
+    img: lifestyle,
   },
   {
     title: 'Uma marca construída com propósito',
     desc: 'O símbolo — a bola estilizada formando um "S" — representa o ciclo do jogo: movimento, direção, ponto, retorno.',
+    img: clube,
   },
 ]
 
@@ -55,7 +64,17 @@ export default function Pillars() {
         <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12" variants={container} initial="hidden" animate={controls}>
           {pillars.map((p, i) => (
             <motion.div key={i} variants={item}
-              className="group relative p-8 sm:p-10 bg-cream border border-sand/60 hover:border-terracotta/40 transition-all duration-500 hover:shadow-[0_8px_30px_-12px_rgba(151,83,62,0.12)]">
+              className="group relative overflow-hidden p-8 sm:p-10 bg-cream border border-sand/60 hover:border-terracotta/40 transition-all duration-500 hover:shadow-[0_8px_30px_-12px_rgba(151,83,62,0.12)]">
+              {/* Imagem de fundo — textura sutil que ganha presença no hover */}
+              <img
+                src={p.img}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover opacity-[0.07] group-hover:opacity-20 group-hover:scale-105 transition-all duration-[1.2s] ease-out"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-cream via-cream/85 to-cream/40" />
+
               <span className="absolute top-6 right-8 font-display text-5xl sm:text-6xl font-light text-sand/50 group-hover:text-terracotta/20 transition-colors duration-500">
                 {String(i + 1).padStart(2, '0')}
               </span>
