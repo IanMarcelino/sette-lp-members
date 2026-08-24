@@ -1,0 +1,465 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-24T17:44:51-03:00",
+  "title": "Design System: Sette Racket Club",
+  "extensions": {
+    "colorMeta": {
+      "crepusculo": {
+        "role": "neutral",
+        "displayName": "Azul de Crepúsculo",
+        "canonical": "#1D2938",
+        "tonalRamp": [
+          "#1A2532",
+          "#2E4159",
+          "#425D7F",
+          "#5679A6",
+          "#7B97BB",
+          "#A1B5CF",
+          "#C8D4E2",
+          "#EEF2F6"
+        ]
+      },
+      "crepusculo-alto": {
+        "role": "neutral",
+        "displayName": "Azul de Crepúsculo Alto",
+        "canonical": "#2A3A4D",
+        "tonalRamp": [
+          "#1B2531",
+          "#304257",
+          "#445E7D",
+          "#597BA3",
+          "#7D98B8",
+          "#A3B6CD",
+          "#C9D4E1",
+          "#EFF2F6"
+        ]
+      },
+      "crepusculo-fundo": {
+        "role": "neutral",
+        "displayName": "Azul de Crepúsculo Fundo",
+        "canonical": "#141D28",
+        "tonalRamp": [
+          "#192533",
+          "#2D415A",
+          "#405D81",
+          "#5479A8",
+          "#7997BC",
+          "#A0B6D0",
+          "#C7D4E3",
+          "#EEF2F7"
+        ]
+      },
+      "barro-batido": {
+        "role": "primary",
+        "displayName": "Barro Batido",
+        "canonical": "#97533E",
+        "tonalRamp": [
+          "#361E16",
+          "#603527",
+          "#894B38",
+          "#B26249",
+          "#C58571",
+          "#D6A89A",
+          "#E7CCC4",
+          "#F8EFED"
+        ]
+      },
+      "barro-umido": {
+        "role": "primary",
+        "displayName": "Barro Úmido",
+        "canonical": "#B06A52",
+        "tonalRamp": [
+          "#351F18",
+          "#5D372A",
+          "#854F3D",
+          "#AD674F",
+          "#C08975",
+          "#D2AB9D",
+          "#E5CDC5",
+          "#F7F0ED"
+        ]
+      },
+      "barro-luz-baixa": {
+        "role": "primary",
+        "displayName": "Barro sob Luz Baixa",
+        "canonical": "#C3806C",
+        "tonalRamp": [
+          "#361E16",
+          "#603427",
+          "#894B38",
+          "#B36149",
+          "#C58471",
+          "#D6A89A",
+          "#E7CCC4",
+          "#F8EFED"
+        ]
+      },
+      "barro-sobre-foto": {
+        "role": "primary",
+        "displayName": "Barro sobre Fotografia",
+        "canonical": "#D09C8C",
+        "tonalRamp": [
+          "#361E16",
+          "#603427",
+          "#894B38",
+          "#B26249",
+          "#C58571",
+          "#D6A89A",
+          "#E7CCC4",
+          "#F8EFED"
+        ]
+      },
+      "cal": {
+        "role": "neutral",
+        "displayName": "Cal",
+        "canonical": "#FAF8F5",
+        "tonalRamp": [
+          "#33291A",
+          "#5A482D",
+          "#816740",
+          "#A88654",
+          "#BCA279",
+          "#D0BDA0",
+          "#E3D8C7",
+          "#F7F3EE"
+        ]
+      },
+      "cal-aquecida": {
+        "role": "neutral",
+        "displayName": "Cal Aquecida",
+        "canonical": "#F5F0EB",
+        "tonalRamp": [
+          "#332619",
+          "#5A432D",
+          "#816140",
+          "#A87E54",
+          "#BC9B79",
+          "#D0B8A0",
+          "#E3D5C7",
+          "#F7F2EE"
+        ]
+      },
+      "areia-lavada": {
+        "role": "neutral",
+        "displayName": "Areia Lavada",
+        "canonical": "#E8E0D8",
+        "tonalRamp": [
+          "#30261C",
+          "#554332",
+          "#796148",
+          "#9E7E5D",
+          "#B59B81",
+          "#CAB8A6",
+          "#E0D5CA",
+          "#F6F2EF"
+        ]
+      },
+      "areia-seca": {
+        "role": "neutral",
+        "displayName": "Areia Seca",
+        "canonical": "#BDA68F",
+        "tonalRamp": [
+          "#30261C",
+          "#554332",
+          "#796148",
+          "#9E7E5D",
+          "#B59B81",
+          "#CAB8A6",
+          "#E0D5CA",
+          "#F6F2EF"
+        ]
+      },
+      "papel-de-prancha": {
+        "role": "neutral",
+        "displayName": "Papel de Prancha",
+        "canonical": "#F5EEDC",
+        "tonalRamp": [
+          "#3C3011",
+          "#69541E",
+          "#96782B",
+          "#C49C38",
+          "#D2B363",
+          "#DFC991",
+          "#ECDFBE",
+          "#F9F5EB"
+        ]
+      },
+      "grafite-sobre-papel": {
+        "role": "neutral",
+        "displayName": "Grafite sobre Papel",
+        "canonical": "#736960",
+        "tonalRamp": [
+          "#2A2623",
+          "#49433D",
+          "#696058",
+          "#897D72",
+          "#A49A92",
+          "#BEB8B2",
+          "#D9D5D1",
+          "#F3F2F1"
+        ]
+      },
+      "pedra": {
+        "role": "neutral",
+        "displayName": "Pedra",
+        "canonical": "#776C63",
+        "tonalRamp": [
+          "#2A2623",
+          "#4A433D",
+          "#696058",
+          "#897D72",
+          "#A49A92",
+          "#BEB7B1",
+          "#D9D5D1",
+          "#F3F2F1"
+        ]
+      },
+      "pedra-ao-sol": {
+        "role": "neutral",
+        "displayName": "Pedra ao Sol",
+        "canonical": "#C0B9B3",
+        "tonalRamp": [
+          "#2A2623",
+          "#4A433D",
+          "#6A6058",
+          "#897D72",
+          "#A49A91",
+          "#BFB7B1",
+          "#D9D5D1",
+          "#F3F2F1"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Nome do clube e abertura de página. Um por página."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Título de seção."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Nome de item em lista ou card. A variante itálica é reservada à frase de posicionamento."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto corrido, sempre com largura máxima declarada."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Etiquetas, botões e metadados. O gesto tipográfico mais reconhecível do sistema."
+      }
+    },
+    "shadows": [
+      {
+        "name": "barro-difusa",
+        "value": "0 8px 30px -12px rgba(151, 83, 62, 0.12)",
+        "purpose": "Exceção herdada, no hover dos cards de Pillars. Não replicar: o sistema é plano por princípio."
+      }
+    ],
+    "motion": [
+      {
+        "name": "entrada",
+        "value": "cubic-bezier(0.25, 0.1, 0.25, 1)",
+        "purpose": "Toda animação de entrada. Usado em 14 lugares."
+      },
+      {
+        "name": "estado",
+        "value": "ease-out 500ms",
+        "purpose": "Toda transição de estado. Lenta de propósito: o botão se preenche, não pisca."
+      },
+      {
+        "name": "estado-leve",
+        "value": "ease 300ms",
+        "purpose": "Troca de cor em link e item de lista."
+      },
+      {
+        "name": "filete",
+        "value": "1500ms cubic-bezier(0.25, 0.1, 0.25, 1)",
+        "purpose": "O filete de aresta crescendo da esquerda."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "xs",
+        "value": "420px"
+      },
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      },
+      {
+        "name": "baixa",
+        "value": "(max-height: 660px)"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botão primário",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "A ação principal. Preenchido em barro; escurece no hover.",
+      "html": "<button class=\"ds-btn-primary\">Agende um horário</button>",
+      "css": ".ds-btn-primary { font-family: Inter, system-ui, sans-serif; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; background: var(--terracotta, #97533E); color: var(--cream, #FAF8F5); border: 1px solid var(--terracotta, #97533E); border-radius: 0; padding: 16px 40px; cursor: pointer; transition: background 500ms ease-out, border-color 500ms ease-out; } .ds-btn-primary:hover, .ds-btn-primary:active { background: #B06A52; border-color: #B06A52; } .ds-btn-primary:focus-visible { outline: 2px solid var(--terracotta, #97533E); outline-offset: 3px; }"
+    },
+    {
+      "name": "Botão de contorno, campo claro",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Ação secundária. Em repouso é só contorno; preenche em 500ms.",
+      "html": "<button class=\"ds-btn-ghost\">Conheça o clube</button>",
+      "css": ".ds-btn-ghost { font-family: Inter, system-ui, sans-serif; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; background: transparent; color: var(--terracotta, #97533E); border: 1px solid var(--terracotta, #97533E); border-radius: 0; padding: 16px 36px; cursor: pointer; transition: background 500ms ease-out, color 500ms ease-out; } .ds-btn-ghost:hover, .ds-btn-ghost:active { background: var(--terracotta, #97533E); color: var(--cream, #FAF8F5); }"
+    },
+    {
+      "name": "Botão de contorno, campo escuro",
+      "kind": "button",
+      "refersTo": "button-ghost-on-dark",
+      "description": "O mesmo botão sobre crepúsculo. O acento troca de token porque o barro original reprova em AA no escuro.",
+      "html": "<div style=\"background:#1D2938;padding:32px\"><button class=\"ds-btn-ghost-dark\">Reservar uma quadra</button></div>",
+      "css": ".ds-btn-ghost-dark { font-family: Inter, system-ui, sans-serif; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; background: transparent; color: var(--terracotta-on-dark, #C3806C); border: 1px solid var(--terracotta-on-dark, #C3806C); border-radius: 0; padding: 16px 32px; cursor: pointer; transition: background 500ms ease-out, color 500ms ease-out; } .ds-btn-ghost-dark:hover, .ds-btn-ghost-dark:active { background: var(--terracotta-on-dark, #C3806C); color: #141D28; }"
+    },
+    {
+      "name": "Abertura de seção",
+      "kind": "custom",
+      "refersTo": "eyebrow",
+      "description": "Etiqueta, título e filete, nessa ordem. O abridor padrão de toda seção do site.",
+      "html": "<div class=\"ds-abertura\"><span class=\"ds-eyebrow\">O Espaço</span><h2 class=\"ds-headline\">Do saibro ao jardim</h2><div class=\"ds-rule\"></div></div>",
+      "css": ".ds-abertura { background: var(--cream, #FAF8F5); padding: 32px; } .ds-eyebrow { font-family: Inter, system-ui, sans-serif; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; display: block; color: var(--terracotta, #97533E); margin-bottom: 24px; } .ds-headline { font-family: \"Cormorant Garamond\", Georgia, serif; font-weight: 300; font-size: 48px; line-height: 1.25; color: var(--navy, #1D2938); margin: 0; } .ds-rule { width: 48px; height: 2px; background: var(--terracotta, #97533E); margin-top: 32px; }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Contorno de 1px, canto reto, sem sombra em repouso. A borda vira barro no hover.",
+      "html": "<article class=\"ds-card\"><h3 class=\"ds-card-t\">Arquitetura contemporânea</h3><p class=\"ds-card-p\">Linhas retas, paleta navy e terracota, materiais honestos.</p></article>",
+      "css": ".ds-card { background: var(--cream, #FAF8F5); border: 1px solid rgba(232, 224, 216, 0.6); border-radius: 0; padding: 32px; transition: border-color 500ms ease-out; } .ds-card:hover { border-color: rgba(151, 83, 62, 0.4); } .ds-card-t { font-family: \"Cormorant Garamond\", Georgia, serif; font-weight: 300; font-size: 24px; color: var(--navy, #1D2938); margin: 0 0 12px; } .ds-card-p { font-family: Inter, system-ui, sans-serif; font-weight: 300; font-size: 16px; line-height: 1.625; color: #776C63; margin: 0; max-width: 28rem; }"
+    },
+    {
+      "name": "Link de navegação",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Label sobre crepúsculo. Inativo em cal a 70%, hover em barro sob luz baixa.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-a ds-ativo\" href=\"#\">O Clube</a><a class=\"ds-nav-a\" href=\"#\">O Espaço</a><a class=\"ds-nav-a\" href=\"#\">Contato</a></nav>",
+      "css": ".ds-nav { background: var(--navy, #1D2938); padding: 16px 24px; display: flex; gap: 32px; } .ds-nav-a { font-family: Inter, system-ui, sans-serif; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(250, 248, 245, 0.7); text-decoration: none; padding: 12px 0; transition: color 300ms ease; } .ds-nav-a.ds-ativo { color: var(--cream, #FAF8F5); } .ds-nav-a:hover { color: var(--terracotta-on-dark, #C3806C); } .ds-nav-a:focus-visible { outline: 2px solid var(--terracotta-on-dark, #C3806C); outline-offset: 3px; }"
+    },
+    {
+      "name": "Linha de índice",
+      "kind": "custom",
+      "refersTo": "index-row",
+      "description": "A lista numerada que indexa os ambientes na planta. Numeral, nome e etiqueta, separados por filete de 1px.",
+      "html": "<div class=\"ds-idx\"><a class=\"ds-idx-a\" href=\"#\"><span class=\"ds-idx-n\">01</span><span class=\"ds-idx-nome\">Tênis</span><span class=\"ds-idx-meta\">Seis quadras · saibro</span></a><a class=\"ds-idx-a\" href=\"#\"><span class=\"ds-idx-n\">02</span><span class=\"ds-idx-nome\">Padel</span><span class=\"ds-idx-meta\">Duas quadras · vidro</span></a></div>",
+      "css": ".ds-idx { background: var(--navy, #1D2938); padding: 24px; border-top: 1px solid rgba(250, 248, 245, 0.2); } .ds-idx-a { display: flex; align-items: baseline; gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(250, 248, 245, 0.2); text-decoration: none; transition: background 300ms ease; } .ds-idx-a:hover, .ds-idx-a:active { background: rgba(250, 248, 245, 0.04); } .ds-idx-n { font-family: Inter, system-ui, sans-serif; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(195, 128, 108, 0.8); font-variant-numeric: tabular-nums; } .ds-idx-nome { font-family: \"Cormorant Garamond\", Georgia, serif; font-weight: 300; font-size: 24px; color: var(--cream, #FAF8F5); } .ds-idx-meta { font-family: Inter, system-ui, sans-serif; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(192, 185, 179, 0.7); margin-left: auto; white-space: nowrap; }"
+    },
+    {
+      "name": "Divisor decorativo",
+      "kind": "custom",
+      "refersTo": "rule",
+      "description": "Dois filetes de 32px ladeando um losango de 6px rotacionado. Separa blocos dentro de uma seção.",
+      "html": "<div class=\"ds-div-wrap\"><div class=\"ds-div\"><span class=\"ds-div-l\"></span><span class=\"ds-div-d\"></span><span class=\"ds-div-l\"></span></div></div>",
+      "css": ".ds-div-wrap { background: var(--navy, #1D2938); padding: 32px; } .ds-div { display: flex; align-items: center; justify-content: center; gap: 16px; } .ds-div-l { width: 32px; height: 1px; background: rgba(250, 248, 245, 0.35); } .ds-div-d { width: 6px; height: 6px; border: 1px solid rgba(195, 128, 108, 0.6); transform: rotate(45deg); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "A Régua e o Saibro",
+    "overview": "O sistema é a disciplina do desenho técnico aplicada a um material quente. A régua é a geometria: canto reto em absolutamente todo lugar, filetes de exatos 2px, tracking de 0.35em nas etiquetas, grade contida por larguras máximas explícitas. O saibro é a matéria: barro, cal, areia, papel de prancha, pedra. Nenhuma cor do sistema é abstrata — todas nomeiam uma coisa física que existe no clube.\n\nO temperamento resultante é quente e acolhedor, e isso não contradiz o rigor: o calor vem da paleta e da matéria, não do relaxamento da forma. Um canto arredondado deixaria o sistema mais macio e menos Sette.\n\nTodo componente é contido e preciso. Um botão em repouso é apenas contorno de 1px; ele se preenche em 500ms quando você chega perto.",
+    "keyCharacteristics": [
+      "Zero raio de canto em todo o sistema — sem exceção conhecida",
+      "Superfícies planas; profundidade por camada de cor, nunca por sombra",
+      "Cormorant Garamond em peso 300 para tudo que é voz; Inter 300 para tudo que é informação",
+      "Etiquetas em caixa alta com tracking de 0.35em — o gesto tipográfico mais reconhecível do sistema",
+      "O filete terracota de 2px como pontuação estrutural, em 24 ocorrências",
+      "Fotografia sempre sob véu; a imagem é atmosfera, não documento",
+      "Contraste medido, não estimado: cada token de texto tem um par de fundo declarado"
+    ],
+    "rules": [
+      {
+        "name": "A Regra das Duas Faces",
+        "section": "colors",
+        "body": "Nenhum acento serve a dois campos. Barro Batido é para campo claro, Barro sob Luz Baixa para campo escuro sólido, Barro sobre Fotografia para imagem sob véu. Usar o token errado não é questão de gosto — é reprovação medida em WCAG AA."
+      },
+      {
+        "name": "A Regra da Voz Única",
+        "section": "colors",
+        "body": "Há um só acento no sistema, e ele é barro. Não existe cor secundária nem terciária. Se um elemento novo pede destaque, a resposta é barro ou hierarquia tipográfica — nunca uma cor nova."
+      },
+      {
+        "name": "A Regra do Pixel Composto",
+        "section": "colors",
+        "body": "Contraste sobre fotografia se mede no pixel resultante, nunca na cor do token. Extraia a cor média da região da foto, aplique o véu por cima, e só então calcule a razão."
+      },
+      {
+        "name": "A Regra do Peso 300",
+        "section": "typography",
+        "body": "Todo o sistema vive em peso 300. Não existe negrito. Ênfase vem de tamanho, de família ou de cor — nunca de peso."
+      },
+      {
+        "name": "A Regra do Tracking Largo",
+        "section": "typography",
+        "body": "O tracking de 0.35em só pertence à Label, e Label é sempre caixa alta e sempre pequena."
+      },
+      {
+        "name": "A Regra da Altura",
+        "section": "typography",
+        "body": "A escala responde à altura da tela, não só à largura. Abaixo de 660px de altura o display cai para 30px por mais larga que a viewport seja."
+      },
+      {
+        "name": "A Regra do Campo Alternado",
+        "section": "layout",
+        "body": "Seções vizinhas trocam de campo — cal, crepúsculo, cal aquecida, papel. A troca de fundo é o que separa uma seção da outra."
+      },
+      {
+        "name": "A Regra da Medida",
+        "section": "layout",
+        "body": "Todo bloco de texto corrido declara largura máxima. Texto que atravessa uma tela de 1920px não é layout, é ausência de layout."
+      },
+      {
+        "name": "A Regra do Plano",
+        "section": "elevation",
+        "body": "Uma superfície nova nasce sem sombra. Se ela precisa se separar do fundo, a resposta é trocar o campo ou acrescentar um contorno de 1px — nunca elevar."
+      },
+      {
+        "name": "A Regra do Véu",
+        "section": "elevation",
+        "body": "Nenhuma fotografia aparece crua. Toda imagem recebe um gradiente navy por cima antes de receber texto, porque a imagem aqui é atmosfera e não documento."
+      },
+      {
+        "name": "A Regra do Canto Reto",
+        "section": "shapes",
+        "body": "Nenhum raio, em nenhum componente, em nenhuma circunstância. Um canto arredondado no Sette é um bug de sistema, não uma variação de estilo."
+      }
+    ],
+    "dos": [
+      "Do escolher o token de acento pelo campo, não pela cor: Barro Batido no claro, Barro sob Luz Baixa no escuro sólido, Barro sobre Fotografia sobre imagem sob véu.",
+      "Do medir contraste sobre fotografia no pixel composto — cor média da região, mais o véu, e só então a razão.",
+      "Do abrir toda seção com etiqueta em Label, título em Cormorant 300 e filete de 48px, nessa ordem.",
+      "Do declarar largura máxima em todo bloco de texto corrido.",
+      "Do manter toda transição de estado em 500ms com ease-out, e toda entrada em cubic-bezier(0.25, 0.1, 0.25, 1).",
+      "Do duplicar o tratamento de hover em :active, porque metade dos visitantes chega pelo toque.",
+      "Do usar os lockups oficiais em src/assets. Uma versão inline divergente já existiu no projeto e foi removida."
+    ],
+    "donts": [
+      "Don't arredondar canto nenhum. Raio zero é invariante do sistema.",
+      "Don't acrescentar sombra a superfície nova. Profundidade vem de véu, grão, troca de campo ou contorno de 1px.",
+      "Don't usar peso acima de 300. Não existe negrito no sistema.",
+      "Don't aplicar Areia Seca a texto que precise ser lido — ela mede 1,70:1 e só serve a numerais ornamentais com aria-hidden.",
+      "Don't introduzir uma segunda cor de acento. Há um acento, e ele é barro.",
+      "Don't apresentar os renders 3D como fotografia do clube construído.",
+      "Don't desenhar no vocabulário de academia, de SaaS genérico ou de clube britânico tradicional."
+    ]
+  }
+}
