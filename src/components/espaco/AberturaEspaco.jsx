@@ -1,8 +1,9 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import aberturaAvif from '../../assets/espaco/abertura.avif'
-import aberturaWebp from '../../assets/espaco/abertura.webp'
+import { prancha } from '../../data/pranchas'
 
 const ease = [0.25, 0.1, 0.25, 1]
+const abertura = prancha('abertura')
+const TAMANHOS = '(min-width: 1024px) 700px, (min-width: 640px) calc(100vw - 5rem), calc(100vw - 3rem)'
 
 // Abertura de "O Espaço".
 //
@@ -50,10 +51,12 @@ export default function AberturaEspaco() {
           transition={{ duration: 1.3, ease }}
         >
           <picture className="contents">
-            <source srcSet={aberturaAvif} type="image/avif" />
-            <source srcSet={aberturaWebp} type="image/webp" />
+            <source srcSet={abertura.avif} sizes={TAMANHOS} type="image/avif" />
+            <source srcSet={abertura.webp} sizes={TAMANHOS} type="image/webp" />
             <img
-              src={aberturaWebp}
+              src={abertura.src}
+              srcSet={abertura.webp}
+              sizes={TAMANHOS}
               alt="Aquarela de um tenista em deslocamento sobre quadra de saibro, vista de cima, com a sombra alongada no piso"
               width={1400}
               height={1866}

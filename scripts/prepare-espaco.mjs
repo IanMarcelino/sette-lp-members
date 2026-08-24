@@ -16,6 +16,17 @@ import sharp from 'sharp'
 const ORIGEM = '/home/ian/Downloads/espaços clube-20260817T212011Z-1-001/espaços clube'
 const DESTINO = new URL('../src/assets/espaco/', import.meta.url).pathname
 
+// O celular renderiza estas pranchas num slot de ~300 a 380 px. Servir só o
+// arquivo grande faz o aparelho baixar de 1,7x a 2,5x mais pixels do que a tela
+// mostra. Cada prancha sai em três larguras e o `srcset` deixa o navegador
+// escolher: 480 cobre 1dpr, 768 cobre 2dpr, e a maior serve tablet, desktop e
+// telas de densidade alta.
+//
+// A largura entra no nome do arquivo porque é ela que vira o descritor `w` do
+// srcset — assim o catálogo em src/data/pranchas.js se monta sozinho a partir
+// dos arquivos, sem uma segunda lista para manter em dia.
+const LARGURAS_EXTRA = [480, 768]
+
 // distancia: quão diferente do papel um pixel precisa ser para contar como tinta
 // minPix: quantos pixels de tinta uma linha/coluna precisa ter para entrar na caixa
 // `distancia` calibrada por prancha: abaixo de ~60 o granulado do papel entra
@@ -99,18 +110,34 @@ async function run() {
     rec.width = Math.min(rec.width, meta.width - rec.left)
     rec.height = Math.min(rec.height, meta.height - rec.top)
 
-    const base = sharp(entrada).extract(rec).resize({ width: p.largura ?? 1600, withoutEnlargement: true })
-    await base.clone().webp({ quality: p.qWebp ?? 86, effort: 6 }).toFile(path.join(DESTINO, `${p.out}.webp`))
-    await base.clone().avif({ quality: p.qAvif ?? 62, effort: 5 }).toFile(path.join(DESTINO, `${p.out}.avif`))
+    const recortada = sharp(entrada).extract(rec)
+    const maior = await recortada
+      .clone()
+      .resize({ width: p.largura ?? 1600, withoutEnlargement: true })
+      .toBuffer()
+    const larguraMaior = (await sharp(maior).metadata()).width
 
-    const m = await sharp(path.join(DESTINO, `${p.out}.webp`)).metadata()
-    const sw = (await stat(path.join(DESTINO, `${p.out}.webp`))).size
-    const sa = (await stat(path.join(DESTINO, `${p.out}.avif`))).size
+    // Nunca ampliar: uma variante mais larga que o recorte só repetiria bytes.
+    const larguras = [...new Set([...LARGURAS_EXTRA, larguraMaior])]
+      .filter((l) => l <= larguraMaior)
+      .sort((a, b) => a - b)
+
+    const linhas = []
+    for (const largura of larguras) {
+      const nomeWebp = `${p.out}-${largura}.webp`
+      const nomeAvif = `${p.out}-${largura}.avif`
+      const redim = sharp(maior).resize({ width: largura, withoutEnlargement: true })
+      await redim.clone().webp({ quality: p.qWebp ?? 86, effort: 6 }).toFile(path.join(DESTINO, nomeWebp))
+      await redim.clone().avif({ quality: p.qAvif ?? 62, effort: 5 }).toFile(path.join(DESTINO, nomeAvif))
+      linhas.push(
+        `${String(largura).padStart(5)}w  webp ${kb((await stat(path.join(DESTINO, nomeWebp))).size).padStart(7)}` +
+          ` · avif ${kb((await stat(path.join(DESTINO, nomeAvif))).size).padStart(7)}`,
+      )
+    }
+
     const antes = (await stat(entrada)).size
-    console.log(
-      `✓ ${p.out.padEnd(15)} ${meta.width}x${meta.height} → ${m.width}x${m.height}  ` +
-        `${kb(antes)} → webp ${kb(sw)} · avif ${kb(sa)}  papel rgb(${papel.map(Math.round)})`,
-    )
+    console.log(`✓ ${p.out.padEnd(15)} ${meta.width}x${meta.height} → recorte ${larguraMaior}px  (origem ${kb(antes)})`)
+    linhas.forEach((l) => console.log(`     ${l}`))
   }
 }
 

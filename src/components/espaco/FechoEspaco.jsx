@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
-import fechoAvif from '../../assets/espaco/quadra-coberta.avif'
-import fechoWebp from '../../assets/espaco/quadra-coberta.webp'
+import { prancha } from '../../data/pranchas'
+
+const fecho = prancha('quadra-coberta')
+const TAMANHOS = '(min-width: 1024px) 680px, (min-width: 640px) calc(100vw - 5rem), calc(100vw - 3rem)'
 
 // Fecho do percurso.
 //
@@ -23,10 +25,12 @@ export default function FechoEspaco() {
           variants={{ visible: { opacity: 1, y: 0, transition: { duration: 1.2 } } }}
         >
           <picture className="contents">
-            <source srcSet={fechoAvif} type="image/avif" />
-            <source srcSet={fechoWebp} type="image/webp" />
+            <source srcSet={fecho.avif} sizes={TAMANHOS} type="image/avif" />
+            <source srcSet={fecho.webp} sizes={TAMANHOS} type="image/webp" />
             <img
-              src={fechoWebp}
+              src={fecho.src}
+              srcSet={fecho.webp}
+              sizes={TAMANHOS}
               alt="Aquarela da quadra de saibro coberta do Sette ao fim da tarde, com o mezanino da área social ocupado ao fundo"
               width={1400}
               height={1866}
@@ -58,7 +62,7 @@ export default function FechoEspaco() {
 
           <Link
             to="/contato"
-            className="inline-block mt-10 px-9 py-4 border border-terracotta text-terracotta text-[0.7rem] tracking-ultra-wide uppercase font-body font-light hover:bg-terracotta hover:text-cream transition-all duration-500 ease-out"
+            className="block w-full text-center sm:inline-block sm:w-auto mt-10 px-9 py-5 sm:py-4 border border-terracotta text-terracotta text-[0.7rem] tracking-ultra-wide uppercase font-body font-light hover:bg-terracotta hover:text-cream active:bg-terracotta active:text-cream transition-all duration-500 ease-out [-webkit-tap-highlight-color:transparent]"
           >
             Reservar uma quadra
           </Link>

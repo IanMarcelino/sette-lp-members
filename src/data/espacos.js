@@ -1,11 +1,4 @@
-import tenisAvif from '../assets/espaco/tenis.avif'
-import tenisWebp from '../assets/espaco/tenis.webp'
-import padelAvif from '../assets/espaco/padel.avif'
-import padelWebp from '../assets/espaco/padel.webp'
-import cafeAvif from '../assets/espaco/cafe.avif'
-import cafeWebp from '../assets/espaco/cafe.webp'
-import giardinoAvif from '../assets/espaco/giardino.avif'
-import giardinoWebp from '../assets/espaco/giardino.webp'
+import { prancha } from './pranchas'
 
 /**
  * Os quatro ambientes de "O Espaço", na ordem do percurso.
@@ -29,8 +22,7 @@ export const espacos = [
     meta: 'Seis quadras · saibro',
     texto:
       'O saibro é a superfície mais lenta do jogo: a bola sobe, o ponto se alonga e a partida vira exercício de leitura e consistência. Aqui o ponto se constrói — raramente se encerra num golpe só.',
-    avif: tenisAvif,
-    webp: tenisWebp,
+    ...prancha('tenis'),
     w: 1453,
     h: 998,
     alt: 'Ilustração axonométrica de uma quadra de saibro do Sette, com bordas azuis e rede ao centro',
@@ -42,8 +34,7 @@ export const espacos = [
     meta: 'Duas quadras · vidro',
     texto:
       'As paredes de vidro fazem parte da quadra. A bola segue viva depois do fundo, o ponto se prolonga e a leitura de ângulo pesa mais que a potência. Jogo de duplas, ritmo curto.',
-    avif: padelAvif,
-    webp: padelWebp,
+    ...prancha('padel'),
     w: 1359,
     h: 1079,
     alt: 'Ilustração axonométrica das duas quadras de padel do Sette, fechadas por paredes de vidro e estrutura metálica',
@@ -55,8 +46,7 @@ export const espacos = [
     meta: 'Gastronomia · bar',
     texto:
       'Cozinha e bar dentro do clube, com salão coberto e mesas ao ar livre. É o ponto em que quem chega e quem sai da quadra se cruzam — a parte da rotina do Sette que acontece sentado.',
-    avif: cafeAvif,
-    webp: cafeWebp,
+    ...prancha('cafe'),
     w: 1274,
     h: 1056,
     alt: 'Ilustração axonométrica do Casa Sette Café: bar envidraçado ao centro e mesas distribuídas no piso ao redor',
@@ -68,8 +58,7 @@ export const espacos = [
     meta: 'Estar · sombra',
     texto:
       'Cobertura translúcida sobre vegetação densa, com assentos à sombra e guarda-sóis. O espaço das horas em que não se joga: a espera pela quadra, a conversa que segue a partida.',
-    avif: giardinoAvif,
-    webp: giardinoWebp,
+    ...prancha('giardino'),
     w: 1525,
     h: 1165,
     alt: 'Ilustração axonométrica do Giardino: pavilhão de cobertura translúcida cercado por palmeiras e vegetação, com mesas e guarda-sóis',

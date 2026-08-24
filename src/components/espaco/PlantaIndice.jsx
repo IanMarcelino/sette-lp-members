@@ -2,8 +2,10 @@ import { motion } from 'framer-motion'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 import Grain from '../Grain'
 import { espacos } from '../../data/espacos'
-import plantaAvif from '../../assets/espaco/planta.avif'
-import plantaWebp from '../../assets/espaco/planta.webp'
+import { prancha } from '../../data/pranchas'
+
+const planta = prancha('planta')
+const TAMANHOS = '(min-width: 1024px) 650px, calc(100vw - 3rem)'
 
 // A planta como índice.
 //
@@ -27,10 +29,12 @@ export default function PlantaIndice() {
           variants={{ visible: { opacity: 1, y: 0, transition: { duration: 1.1 } } }}
         >
           <picture className="contents">
-            <source srcSet={plantaAvif} type="image/avif" />
-            <source srcSet={plantaWebp} type="image/webp" />
+            <source srcSet={planta.avif} sizes={TAMANHOS} type="image/avif" />
+            <source srcSet={planta.webp} sizes={TAMANHOS} type="image/webp" />
             <img
-              src={plantaWebp}
+              src={planta.src}
+              srcSet={planta.webp}
+              sizes={TAMANHOS}
               alt="Planta aquarelada do Sette Racket Club: seis quadras de saibro à esquerda, duas quadras de padel e área verde ao centro, edificação social e estacionamento à direita"
               width={1532}
               height={1483}
@@ -56,7 +60,7 @@ export default function PlantaIndice() {
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-cream leading-tight text-balance">
             Tudo em um só quarteirão
           </h2>
-          <p className="mt-6 text-sm sm:text-base text-stone-light/85 font-light leading-relaxed font-body max-w-sm">
+          <p className="mt-6 text-base text-stone-light/85 font-light leading-relaxed font-body max-w-sm">
             As quadras de saibro ocupam a face oeste; o padel e o jardim, o
             miolo; a edificação social e o estacionamento, a face leste. Nada
             exige carro entre uma coisa e outra.
@@ -68,7 +72,10 @@ export default function PlantaIndice() {
               <a
                 key={e.id}
                 href={`#${e.id}`}
-                className="group flex items-baseline gap-5 py-4 border-b border-cream/20 transition-colors duration-300 hover:bg-cream/[0.04]"
+                // No toque não existe hover: o realce de `active` é o único
+                // retorno entre o dedo encostar e a página saltar. O realce
+                // padrão do iOS é desligado porque este o substitui.
+                className="group flex items-baseline gap-5 py-5 sm:py-4 border-b border-cream/20 transition-colors duration-300 hover:bg-cream/[0.04] active:bg-cream/[0.08] [-webkit-tap-highlight-color:transparent]"
               >
                 <span
                   aria-hidden="true"
@@ -76,11 +83,18 @@ export default function PlantaIndice() {
                 >
                   {e.numero}
                 </span>
-                <span className="font-display text-xl sm:text-2xl font-light text-cream group-hover:text-terracotta-on-dark transition-colors duration-300">
-                  {e.nome}
-                </span>
-                <span className="ml-auto text-[0.65rem] tracking-[0.16em] uppercase text-stone-light/70 font-light font-body whitespace-nowrap">
-                  {e.meta}
+                {/* Numa tela de 360px "Casa Sette Café" e sua etiqueta não
+                    cabem na mesma linha: o nome quebrava e a linha inchava
+                    para 89px enquanto as vizinhas ficavam em 61px. Abaixo de
+                    xs a etiqueta desce; de xs para cima a linha volta a ser a
+                    do desenho original. */}
+                <span className="flex-1 flex flex-col gap-1 xs:flex-row xs:items-baseline xs:gap-5">
+                  <span className="font-display text-xl sm:text-2xl font-light text-cream group-hover:text-terracotta-on-dark transition-colors duration-300">
+                    {e.nome}
+                  </span>
+                  <span className="text-[0.65rem] tracking-[0.16em] uppercase text-stone-light/70 font-light font-body xs:ml-auto xs:whitespace-nowrap">
+                    {e.meta}
+                  </span>
                 </span>
               </a>
             ))}
