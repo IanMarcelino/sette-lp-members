@@ -133,13 +133,9 @@ export default function Hero() {
             Onde esporte, arquitetura e experiência se encontram.
           </motion.p>
 
-          {/* A linha anterior — "pensado para quem valoriza performance,
-              convívio e bom gosto" — falava do projeto, não do clube que já
-              funciona, e não trazia fato nenhum. Cada afirmação abaixo está
-              registrada no PRODUCT.md. */}
           <motion.p custom={2.3} variants={variants} initial="hidden" animate="visible"
             className="mt-6 baixa:mt-3 text-sm sm:text-base text-stone-light font-light leading-relaxed max-w-md mx-auto font-body">
-            Tênis e padel no Papicu, em Fortaleza. Aberto ao público, com reserva pelo WhatsApp.
+            Um clube de raquete pensado para quem valoriza performance, convívio e bom gosto.
           </motion.p>
 
           {/* A reserva é o objetivo declarado do site, então ela lidera. */}
