@@ -29,7 +29,7 @@ O modelo de acesso é o que um clube vizinho não copia de graça: **aberto ao p
 - **Endereço:** Rua Valdetário Mota, 1058 — Papicu, Fortaleza — CE, CEP 60175-742
 - **Funcionamento:** Segunda a sexta 06h00–23h00 · Sábado 07h00–22h00 · Domingo e feriados 07h00–20h00
 - **Canal de reserva:** WhatsApp (85) 98557-5252. Toda reserva passa por atendimento humano.
-- **Outros canais:** Instagram @setteracketclub
+- **Outros canais:** Instagram @setteracketclub · e-mail contato@setteclub.com
 - **Domínio:** setteclub.com
 
 ## Capabilities and Constraints
@@ -43,8 +43,6 @@ O modelo de acesso é o que um clube vizinho não copia de graça: **aberto ao p
 **Sem reserva online.** Não existe sistema de agendamento, disponibilidade em tempo real ou pagamento. Qualquer trabalho que sugira "reserve agora" precisa terminar no WhatsApp.
 
 **Sem captação ativa de membros.** O formulário de adesão foi retirado em junho de 2026 junto com as integrações de Google Sheets e Resend. O `email-template.html` na raiz é o confirmatório daquela fase e está inativo.
-
-**Indefinido:** o e-mail de contato exibido é `contato@setteracketclub.com`, em domínio diferente do site (`setteclub.com`). Está marcado com TODO em `src/config/clube.js` e não deve ser tratado como confirmado.
 
 ## Brand Commitments
 

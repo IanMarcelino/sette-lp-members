@@ -16,9 +16,7 @@ export const CLUBE = {
   telefone: '(85) 98557-5252',
   whatsapp: '5585985575252', // só dígitos, com DDI
 
-  // TODO: confirmar. O domínio do site é setteclub.com — este e-mail está em
-  // outro domínio (setteracketclub.com) e pode não existir mais.
-  email: 'contato@setteracketclub.com',
+  email: 'contato@setteclub.com',
 
   endereco: 'Rua Valdetário Mota, 1058',
   bairro: 'Papicu',
