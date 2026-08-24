@@ -29,7 +29,7 @@ const modalidades = [
   {
     img: lifestyle,
     label: 'Lifestyle',
-    desc: 'Convívio, networking e bom gosto: a experiência Sette continua muito além da quadra.',
+    desc: 'Convívio e encontro: o clube continua depois que a partida acaba.',
     to: '/experiencia',
   },
 ]
@@ -56,7 +56,7 @@ export default function Modalidades() {
             O universo Sette
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-cream text-balance">
-            Muito além da quadra
+            O clube em quatro partes
           </h2>
           <div className="mx-auto mt-8 w-16 h-[2px] bg-terracotta-on-dark" />
         </motion.div>

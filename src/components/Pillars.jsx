@@ -9,12 +9,12 @@ import clube from '../assets/clube.webp'
 const pillars = [
   {
     title: 'Arquitetura contemporânea',
-    desc: 'Linhas fortes, paleta navy + terracota, materiais honestos. Ambientes que respiram elite esportiva.',
+    desc: 'Linhas retas, paleta navy e terracota, materiais honestos.',
     img: obra,
   },
   {
     title: 'Quadras de padrão internacional',
-    desc: 'Cada ponto pensado para performance — do quique ao jogo mental.',
+    desc: 'No saibro o ponto se constrói: a partida cobra leitura e consistência, não só potência.',
     img: tenis,
   },
   {
@@ -54,7 +54,8 @@ export default function Pillars() {
             Criada para transformar o jogador
           </h2>
           <p className="mt-6 text-sm text-stone font-light font-body max-w-lg mx-auto">
-            Inspirado nos clubes mais sofisticados do mundo, o SETTE foi desenhado para ser o novo marco do tênis moderno no Nordeste.
+            A referência são os grandes clubes de raquete do mundo. A ambição é ser
+            o marco do tênis moderno no Nordeste.
           </p>
         </motion.div>
 

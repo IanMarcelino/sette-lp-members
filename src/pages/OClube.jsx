@@ -24,9 +24,9 @@ function LifestyleBlock() {
           </h2>
           <div className="w-10 h-[2px] bg-terracotta/40 my-8" />
           <p className="text-sm sm:text-base text-stone font-light leading-relaxed font-body">
-            O Sette nasce para ser mais do que quadras. É um lugar onde performance,
-            convivência e bom gosto se encontram — para quem entende que o esporte
-            é também cultura, encontro e identidade.
+            O Sette trata a arquitetura e o convívio como parte da oferta esportiva,
+            não como cenário para ela. É o que separa um clube de um conjunto de
+            quadras.
           </p>
         </motion.div>
 

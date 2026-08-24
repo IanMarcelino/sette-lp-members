@@ -6,7 +6,7 @@ import Grain from '../components/Grain'
 const eventos = [
   { titulo: 'Torneios internos', desc: 'Competições entre membros ao longo da temporada, com ranking e premiação.' },
   { titulo: 'Clínicas e workshops', desc: 'Treinos com profissionais convidados para evoluir técnica e jogo mental.' },
-  { titulo: 'Encontros sociais', desc: 'Noites temáticas, confraternizações e experiências exclusivas no lounge.' },
+  { titulo: 'Encontros sociais', desc: 'Confraternizações e encontros no lounge, entre uma partida e outra.' },
 ]
 
 function Eventos() {
@@ -30,7 +30,7 @@ function Eventos() {
             Agenda
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-navy text-balance">
-            Mais do que jogar — viver o clube
+            O que acontece fora da partida
           </h2>
         </motion.div>
 
@@ -73,8 +73,8 @@ function Gastronomia() {
           <div className="w-8 h-px bg-cream/35" />
         </div>
         <p className="font-display text-lg sm:text-xl md:text-2xl text-cream/75 italic font-light leading-relaxed max-w-2xl mx-auto">
-          Um bar e lounge pensados para prolongar a experiência — boa comida,
-          drinks bem-feitos e o clima certo para a convivência.
+          Bar e lounge dentro do clube. A partida acaba e ninguém precisa sair
+          para comer.
         </p>
       </motion.div>
       <div className="absolute bottom-0 left-0 w-full h-[2px] bg-terracotta" />

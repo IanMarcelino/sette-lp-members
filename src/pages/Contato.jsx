@@ -134,8 +134,8 @@ function Hero() {
           </h1>
           <div className="w-16 h-[2px] bg-terracotta-on-dark my-8" />
           <p className="text-sm sm:text-base text-stone-light/85 font-light leading-relaxed font-body max-w-md text-balance">
-            As portas do Sette estão abertas. Agende uma visita, conheça as quadras
-            e sinta de perto o ambiente do clube.
+            Reserve um horário pelo WhatsApp. Toda reserva passa por uma conversa,
+            não por um formulário.
           </p>
 
           {/* Enquanto não houver número real o CTA não vira link: um botão que
@@ -204,7 +204,7 @@ function DetalhesEMapa() {
             Onde nos encontrar
           </span>
           <h2 className="font-display text-3xl sm:text-4xl font-light text-navy leading-snug mb-10 text-balance">
-            Tudo o que você precisa para chegar até nós
+            Papicu, Fortaleza
           </h2>
 
           <div className="divide-y divide-sand/70 border-t border-b border-sand/70">

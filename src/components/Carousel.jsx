@@ -15,8 +15,8 @@ gsap.registerPlugin(ScrollTrigger)
 
 const slides = [
   { avif: c1Avif, webp: c1Webp, w: 2400, h: 1340, label: 'Quadra de Saibro', desc: 'Padrão internacional com iluminação de alto rendimento e cobertura.' },
-  { avif: c2Avif, webp: c2Webp, w: 2400, h: 1340, label: 'Área Social', desc: 'Espaço integrado às quadras de padel para convivência e descompressão.' },
-  { avif: c3Avif, webp: c3Webp, w: 2400, h: 1340, label: 'Lounge', desc: 'Ambientes pensados para conforto, networking e experiências exclusivas.' },
+  { avif: c2Avif, webp: c2Webp, w: 2400, h: 1340, label: 'Área Social', desc: 'Integrada às quadras de padel, para o tempo entre uma partida e outra.' },
+  { avif: c3Avif, webp: c3Webp, w: 2400, h: 1340, label: 'Lounge', desc: 'Sombra, poltrona e conversa. O clube fora da quadra.' },
   { avif: c4Avif, webp: c4Webp, w: 2400, h: 1339, label: 'Quadra de Padel', desc: 'Estrutura profissional com grama sintética de última geração.' },
 ]
 
@@ -143,7 +143,7 @@ export default function Carousel() {
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 text-cream/70 pointer-events-none z-10">
         <div className="w-8 h-px bg-cream/40" />
         <span className="text-[0.65rem] tracking-ultra-wide uppercase font-light font-body">
-          {semPin ? 'Arraste' : 'Scroll'}
+          {semPin ? 'Arraste' : 'Role'}
         </span>
         <div className="w-8 h-px bg-cream/40" />
       </div>

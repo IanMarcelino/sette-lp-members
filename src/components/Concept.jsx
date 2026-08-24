@@ -25,14 +25,14 @@ export default function Concept() {
             />
 
             <p className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-light text-navy leading-relaxed text-balance">
-              Mais do que um clube, o Sette nasce como um espaço onde{' '}
-              <em className="text-terracotta">esporte, arquitetura e experiência</em> se encontram.
+              O esporte é o motivo de vir.{' '}
+              <em className="text-terracotta">A arquitetura e o convívio</em> não são cenário para ele — são parte da oferta.
             </p>
 
             <div className="mx-auto my-10 w-10 h-[2px] bg-terracotta/40" />
 
             <p className="text-sm sm:text-base text-stone font-light leading-relaxed max-w-lg mx-auto font-body">
-              Cada detalhe foi pensado para quem valoriza tempo, ambiente e performance.
+              Oito quadras, um bar, um lounge e um jardim, no mesmo quarteirão do Papicu.
             </p>
           </motion.div>
       </div>

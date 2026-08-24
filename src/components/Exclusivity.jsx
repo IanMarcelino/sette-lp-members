@@ -55,10 +55,10 @@ export default function Exclusivity() {
           </div>
 
           <p className="font-display text-lg sm:text-xl md:text-2xl text-cream/75 italic font-light leading-relaxed max-w-2xl mx-auto text-balance">
-            O Sette poderá ser frequentado pelo público em geral, mas contará com um número reduzido de membros com acesso privilegiado.
+            O Sette é aberto ao público em geral e mantém um número reduzido de membros com acesso privilegiado.
           </p>
           <p className="mt-4 text-base text-stone-light/85 font-light leading-relaxed max-w-lg mx-auto font-body text-balance">
-            Novas admissões de membros acontecerão por processo seletivo ou lista de prioridade.
+            Novas admissões acontecem por processo seletivo ou lista de prioridade.
           </p>
         </motion.div>
 
