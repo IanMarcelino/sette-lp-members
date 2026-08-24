@@ -8,6 +8,12 @@ export default {
       // tipográfico intermediário.
       screens: {
         xs: '420px',
+        // A escala de tipo respondia só à largura. Num celular deitado
+        // (844x390) a largura passa de `md` e o h1 ia a 72px numa tela de
+        // 390px de altura. `baixa` é a altura entrando na conta — o limiar
+        // alcança tanto o celular deitado quanto o retrato curto (360x640),
+        // e fica abaixo de qualquer laptop (768px ou mais).
+        baixa: { raw: '(max-height: 660px)' },
       },
       fontFamily: {
         display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
