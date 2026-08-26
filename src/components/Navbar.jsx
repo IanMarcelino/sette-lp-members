@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import badgeWhite from '../assets/badge-white.svg'
-import logoHorizontal from '../assets/logo-horizontal-white.svg'
 
 const links = [
   { to: '/o-clube', label: 'O Clube' },
@@ -46,16 +45,15 @@ export default function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 px-6 sm:px-10 py-4 flex items-center justify-between"
       style={{ backgroundColor: fundo, backdropFilter: 'blur(12px)' }}
     >
-      {/* Marca */}
-      <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-        {/* Símbolo isolado no mobile; lockup oficial completo a partir de sm */}
-        <img src={badgeWhite} alt="Sette Racket Club — início" width={32} height={32} className="w-8 h-8 sm:hidden" />
+      {/* Marca. O selo redondo é o mesmo lockup da abertura da Home — o mesmo
+          desenho na barra e na primeira coisa que a página mostra. */}
+      <Link to="/" className="flex items-center" onClick={() => setOpen(false)}>
         <img
-          src={logoHorizontal}
+          src={badgeWhite}
           alt="Sette Racket Club — início"
-          width={160}
-          height={36}
-          className="hidden sm:block h-9 w-auto"
+          width={44}
+          height={44}
+          className="w-10 h-10 sm:w-11 sm:h-11"
         />
       </Link>
 
