@@ -2,19 +2,35 @@
 export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
-    extend: {
+    // `screens` é declarado inteiro, e não em `extend`, porque a ordem importa.
+    //
+    // Em `extend.screens` o Tailwind acrescenta os pontos novos DEPOIS dos
+    // padrões, e a ordem no objeto é a ordem em que os blocos `@media` saem na
+    // folha. `xs` (420px) caía atrás de `xl` (1280px) e ganhava a cascata em
+    // toda tela acima de 420px: os três títulos de abertura do site —
+    // Home, O Espaço e as páginas internas — declaravam
+    // `xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl` e ficavam presos em
+    // 48px do celular grande ao desktop. Declarados aqui, os pontos saem na
+    // ordem escrita e cada passo da escala volta a valer.
+    screens: {
       // Telefones grandes (Pro Max, Plus) ganham espaço antes do `sm` do
       // Tailwind, que só entra a 640px — larga demais para caber um passo
       // tipográfico intermediário.
-      screens: {
-        xs: '420px',
-        // A escala de tipo respondia só à largura. Num celular deitado
-        // (844x390) a largura passa de `md` e o h1 ia a 72px numa tela de
-        // 390px de altura. `baixa` é a altura entrando na conta — o limiar
-        // alcança tanto o celular deitado quanto o retrato curto (360x640),
-        // e fica abaixo de qualquer laptop (768px ou mais).
-        baixa: { raw: '(max-height: 660px)' },
-      },
+      xs: '420px',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+      // A escala de tipo respondia só à largura. Num celular deitado
+      // (844x390) a largura passa de `md` e o h1 ia a 72px numa tela de
+      // 390px de altura. `baixa` é a altura entrando na conta — o limiar
+      // alcança tanto o celular deitado quanto o retrato curto (360x640),
+      // e fica abaixo de qualquer laptop (768px ou mais). Vem por último para
+      // poder cortar a escala depois que a largura já decidiu.
+      baixa: { raw: '(max-height: 660px)' },
+    },
+    extend: {
       fontFamily: {
         display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
         body: ['"Inter"', 'system-ui', 'sans-serif'],
