@@ -11,9 +11,10 @@ import Exclusivity from '../components/Exclusivity'
 // ambientes (claro) → entender como se entra (escuro) → sair com a atmosfera
 // (claro). Cada imagem assenta no fundo em que foi pintada.
 //
-// A abertura desta página não usa o PageHero compartilhado: a prancha de
-// aquarela pede um cabeçalho próprio. O PageHero segue intacto em O Clube e
-// Experiência.
+// A abertura desta página tem componente próprio, e não o `AberturaPagina` das
+// outras duas: lá a matéria é fotografia, que sangra até a borda e se dissolve
+// no campo; aqui é aquarela sobre papel, que precisa caber inteira e assentar
+// sem corte. Foi esta abertura que deu o desenho às outras.
 export default function OEspaco() {
   return (
     <>

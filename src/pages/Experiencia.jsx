@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
-import PageHero from '../components/PageHero'
+import AberturaPagina from '../components/AberturaPagina'
+import { lounge } from '../data/heroi'
+import TemposDoDia from '../components/experiencia/TemposDoDia'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import Grain from '../components/Grain'
 
@@ -82,14 +84,34 @@ function Gastronomia() {
   )
 }
 
+// O ritmo alterna o campo: crepúsculo fundo na abertura → papel nas aquarelas
+// do dia → cal na agenda → crepúsculo no lounge.
+//
+// A abertura é escura porque o render do lounge é interior de fim de tarde: no
+// campo claro ele viraria um retângulo cinza, e no escuro ele se dissolve.
+//
+// "Quatro tempos" entra logo depois da abertura porque é ela que responde ao
+// que o cabeçalho promete: a vida dentro do clube, antes de a página descer
+// para a agenda e a gastronomia, que são as partes específicas dela.
 export default function Experiencia() {
   return (
     <>
-      <PageHero
+      <AberturaPagina
+        campo="escuro"
         eyebrow="Experiência"
-        title="A vida dentro do clube"
-        subtitle="Esporte, agenda social e gastronomia compõem o dia a dia do Sette."
+        titulo={
+          <>
+            A vida
+            <br />
+            dentro
+            <br />
+            do clube
+          </>
+        }
+        texto="Quatro tempos de um dia, uma agenda que corre o ano inteiro e uma cozinha que atende quem acaba de sair da quadra."
+        imagem={lounge}
       />
+      <TemposDoDia />
       <Eventos />
       <Gastronomia />
     </>

@@ -1,71 +1,49 @@
-import { motion } from 'framer-motion'
-import PageHero from '../components/PageHero'
+import AberturaPagina from '../components/AberturaPagina'
+import { marca } from '../data/heroi'
 import Philosophy from '../components/Philosophy'
-import { useScrollReveal } from '../hooks/useScrollReveal'
-import lifestyleAvif from '../assets/lifestyle.avif'
-import lifestyleWebp from '../assets/lifestyle.webp'
+import Elenco from '../components/clube/Elenco'
+import EstiloDeVida from '../components/clube/EstiloDeVida'
+import FechoClube from '../components/clube/FechoClube'
 
-function LifestyleBlock() {
-  const [ref, controls] = useScrollReveal(0.2)
-
-  return (
-    <section className="py-24 sm:py-32 px-6 bg-warm" ref={ref}>
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={controls}
-          variants={{ visible: { opacity: 1, x: 0, transition: { duration: 1 } } }}
-        >
-          <span className="inline-block text-[0.65rem] tracking-ultra-wide uppercase text-terracotta font-light font-body mb-6">
-            Propósito
-          </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-navy leading-snug text-balance">
-            Um clube pensado como extensão de um estilo de vida
-          </h2>
-          <div className="w-10 h-[2px] bg-terracotta/40 my-8" />
-          <p className="text-sm sm:text-base text-stone font-light leading-relaxed font-body">
-            O Sette trata a arquitetura e o convívio como parte da oferta esportiva,
-            não como cenário para ela. É o que separa um clube de um conjunto de
-            quadras.
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={controls}
-          variants={{ visible: { opacity: 1, scale: 1, transition: { duration: 1.2 } } }}
-          className="relative"
-        >
-          <div className="absolute -inset-3 border border-terracotta/20 pointer-events-none" />
-          <picture className="contents">
-            <source srcSet={lifestyleAvif} type="image/avif" />
-            <source srcSet={lifestyleWebp} type="image/webp" />
-            <img
-              src={lifestyleWebp}
-              alt="Jogador em quadra de saibro no Sette Racket Club"
-              width={1291}
-              height={1291}
-              loading="lazy"
-              decoding="async"
-              className="relative w-full h-auto shadow-2xl"
-            />
-          </picture>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
+// "O Clube" como quem o clube é, em três respostas seguidas: de onde vem o
+// nome, quem ensina, e o que o Sette entende por clube.
+//
+// O ritmo alterna o campo a cada seção, como em "O Espaço": cal aquecida na
+// abertura → cal na origem do nome → crepúsculo no elenco → cal aquecida no
+// propósito → crepúsculo no fecho. A troca de fundo é o que separa uma seção
+// da outra; não há divisor entre elas além do filete.
+//
+// A abertura é clara porque o brasão está gravado em barro: sob véu navy ele
+// perderia a única coisa que a imagem tem para mostrar. Cal aquecida e cal são
+// vizinhas de propósito — é para isso que o segundo campo claro existe —, e o
+// que separa as duas seções é a coluna de imagem descendo até a base da
+// primeira.
+//
+// O elenco é carrossel porque o material pede sequência, não grade: as fichas
+// têm de quatro a seis credenciais cada, e um cartão por pessoa comprimiria o
+// conteúdo até sobrar só o nome.
 export default function OClube() {
   return (
     <>
-      <PageHero
+      <AberturaPagina
+        campo="claro"
         eyebrow="O Clube"
-        title="A história por trás do Sette"
-        subtitle="Um número perfeito, símbolo de completude — e a essência de cada partida."
+        titulo={
+          <>
+            A história
+            <br />
+            por trás
+            <br />
+            do Sette
+          </>
+        }
+        texto="Um nome que veio do italiano, um símbolo que veio do jogo e um elenco que veio da quadra. O Sette começa nessas três coisas."
+        imagem={marca}
       />
       <Philosophy />
-      <LifestyleBlock />
+      <Elenco />
+      <EstiloDeVida />
+      <FechoClube />
     </>
   )
 }
