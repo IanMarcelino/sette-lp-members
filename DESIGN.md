@@ -136,7 +136,7 @@ Uma paleta de matéria: barro, cal, areia, papel e pedra, sob um céu de fim de 
 - **Cal Aquecida** (`{colors.cal-aquecida}`): o segundo campo claro, para alternar seções vizinhas sem trocar de mundo.
 - **Areia Lavada** (`{colors.areia-lavada}`): bordas, divisores e o contorno de cards em campo claro.
 - **Areia Seca** (`{colors.areia-seca}`): exclusivamente numerais ornamentais. Mede 1,70:1 sobre Cal — está abaixo de qualquer piso de leitura e por isso **só pode aparecer em elemento marcado `aria-hidden`**.
-- **Papel de Prancha** (`{colors.papel-de-prancha}`): o próprio fundo das aquarelas de arquitetura. Adotar o papel do original como campo da seção é o que faz as pranchas assentarem sem borda visível.
+- **Papel de Prancha** (`{colors.papel-de-prancha}`): o próprio fundo das aquarelas de arquitetura. Adotar o papel do original como campo da seção é o que faz as pranchas assentarem sem borda visível. O caminho contrário também vale e é regra: toda aquarela nova é **calibrada para este valor** no preparo do asset, por ganho multiplicativo por canal. As folhas variam entre si — a série de pessoas media #F8F0DF —, e três pontos por canal, que parecem nada em número, aparecem na tela como um retângulo claro em volta da figura.
 - **Grafite sobre Papel** (`{colors.grafite-sobre-papel}`): o texto corrido no campo de papel, onde Pedra cairia para 4,42:1. Mede 4,65:1 no papel, 5,08:1 na cal e 4,75:1 na cal aquecida.
 - **Pedra** (`{colors.pedra}`): texto secundário sobre campo claro. 4,51:1 na cal aquecida, que é o pior caso.
 - **Pedra ao Sol** (`{colors.pedra-ao-sol}`): texto secundário sobre campo escuro, calibrado para continuar passando em AA mesmo a 70% de opacidade.
@@ -195,7 +195,9 @@ Existe exatamente **uma** sombra em todo o sistema, no hover dos cards de Pillar
 
 **A Regra do Plano.** Uma superfície nova nasce sem sombra. Se ela precisa se separar do fundo, a resposta é trocar o campo ou acrescentar um contorno de 1px — nunca elevar.
 
-**A Regra do Véu.** Nenhuma fotografia aparece crua. Toda imagem recebe um gradiente navy por cima antes de receber texto, porque a imagem aqui é atmosfera e não documento. Em paisagem a hero acrescenta um véu radial elíptico sob a coluna de texto; em retrato não, porque ali a elipse apagaria a foto inteira.
+**A Regra do Véu.** Nenhuma fotografia aparece crua. Toda imagem recebe um gradiente por cima antes de receber texto, porque a imagem aqui é atmosfera e não documento. Em paisagem a hero acrescenta um véu radial elíptico sob a coluna de texto; em retrato não, porque ali a elipse apagaria a foto inteira.
+
+O véu é navy quando a imagem serve de fundo a texto claro. Quando ela não carrega texto e só precisa se fundir ao campo — o caso das aberturas de página —, o véu toma a **cor do campo em que a imagem se dissolve**: crepúsculo fundo no escuro, cal aquecida no claro. Véu navy sobre o barro do brasão apagaria justamente a matéria que a imagem existe para mostrar. Em nenhum dos dois casos a ponta oposta chega a zero: o véu mais fino do sistema é de 10%.
 
 ## Shapes
 
@@ -238,6 +240,24 @@ O filete de 2px. Em largura total é aresta de seção; em 48px é pontuação s
 
 ### Grain
 Camada de textura sobre campos escuros, a 3% de opacidade, sempre `aria-hidden`. É o que impede que uma seção navy inteira leia como bloco chapado de cor.
+
+### Abertura de página
+A vitrine de cada página interna, e o componente com mais presença do sistema depois da hero da Home. Grade de 12 colunas ocupando a largura da janela: **texto em 5, matéria em 7**.
+
+- **Matéria:** sangra até a borda direita da janela — nunca termina numa aresta visível — e se dissolve no campo pela aresta interna, a que encosta no texto. O véu segura opacidade cheia nos primeiros 14% da coluna antes de começar a rampa; começar a rampa na aresta deixa a imagem aparecer a 2% de transparência nos primeiros pixels e a borda da coluna vira uma linha vertical contra o campo chapado.
+- **Texto:** etiqueta, título e filete de 48px, alinhados à esquerda, centrados na altura da seção. O título vem em **três linhas curtas empilhadas** — é o que deixa o Cormorant chegar a 72px numa coluna de 400px.
+- **Altura:** a tela cheia, como a hero da Home. Uma abertura ou toma a janela ou não é abertura — sobrar uma fresta da seção seguinte lê como imagem cortada, não como convite para rolar. No empilhado a matéria vira uma faixa de 44svh no topo, com a dissolução virando para baixo, e o texto ocupa o resto da tela abaixo dela.
+- **Campo:** claro ou escuro conforme a matéria. Barro sob luz baixa exige o escuro; barro sob sol exige o claro. O campo da abertura também é a primeira metade da alternância da página.
+- **Exceção:** "O Espaço" tem abertura própria. Lá a matéria é aquarela sobre papel, que precisa caber inteira e assentar sem corte — o oposto de sangrar. Foi essa abertura que deu o desenho às outras.
+
+### Carousel
+Composição de item único, usada quando o conteúdo é uma sequência e não um conjunto: os quatro tempos do dia, em Experiência, e o elenco, em O Clube. Um item ocupa a composição de cada vez, em duas colunas — imagem à esquerda, texto à direita —, e abaixo dela um **trilho** mostra a série inteira.
+
+- **Trilho:** grade para quatro ou menos itens, faixa de rolagem horizontal quando não cabem. O item ativo é marcado pelo filete de 2px crescendo até a largura toda da célula em 700ms; o inativo mostra 20px do filete no hover. Nunca por preenchimento de fundo nem por ponto.
+- **Setas e contador:** opcionais, e só onde o carrossel é o assunto principal da seção. Par de botões de 44x44 com contorno de 1px, no vocabulário do botão ghost — preenchem no hover e no active, em 500ms; setas em traço de 1px, nunca em glifo tipográfico. O contador é `01 / 04` em Label com numeral tabular, sempre `aria-hidden`.
+  Onde o trilho já mostra quantos são, quem é o ativo e leva a qualquer um em um toque, os dois saem: são o mesmo controle duas vezes, e ocupam altura que a seção não tem para gastar. O arrasto e as setas do teclado permanecem em qualquer caso.
+- **Movimento:** cruzamento de opacidade com deslocamento de 24px no sentido do salto, 500ms. Sem avanço automático: o sistema não pede atenção. Sob movimento reduzido a troca é corte seco e o arrasto sai.
+- **Acessibilidade:** `aria-roledescription="carrossel"` na seção, `aria-live="polite"` na região que troca, `aria-current` no item ativo do trilho, setas do teclado enquanto o foco estiver dentro da seção, e arrasto horizontal no toque.
 
 ## Do's and Don'ts
 
