@@ -110,7 +110,7 @@ Todo componente é **contido e preciso**. Um botão em repouso é apenas contorn
 O sistema rejeita explicitamente três mundos vizinhos: a **academia** (neon, diagonal, condensada pesada), o **SaaS genérico** (cards arredondados iguais em grade de três, gradiente em texto) e o **clube britânico tradicional** (verde-garrafa, dourado, serifa vitoriana, brasão heráldico). O Sette é contemporâneo e brasileiro, e o barro é o que o ancora.
 
 **Key Characteristics:**
-- Zero raio de canto em todo o sistema — sem exceção conhecida
+- Zero raio de canto em todo o sistema, com uma exceção declarada e única: o botão flutuante do WhatsApp
 - Superfícies planas; profundidade por camada de cor, nunca por sombra
 - Cormorant Garamond em peso 300 para tudo que é voz; Inter 300 para tudo que é informação
 - Etiquetas em caixa alta com tracking de 0.35em — o gesto tipográfico mais reconhecível do sistema
@@ -189,11 +189,17 @@ Os pontos de quebra são 420px (`xs`, telefones grandes, onde cabe um passo tipo
 
 **O sistema é plano por princípio.** Superfícies não têm sombra. Profundidade vem de quatro recursos, nesta ordem de preferência: véu de cor sobre fotografia, grão de 3% de opacidade sobre campos escuros, troca de campo entre seções vizinhas, e o filete terracota de 2px como aresta.
 
-Existe exatamente **uma** sombra em todo o sistema, no hover dos cards de Pillars (`0 8px 30px -12px rgba(151,83,62,0.12)`). Ela é exceção herdada, não vocabulário — é uma sombra de barro, difusa e quase invisível, e não deve ser replicada em componentes novos.
+Existem **duas** sombras em todo o sistema, e nenhuma é vocabulário.
+
+A primeira é herdada: o hover dos cards de Pillars (`0 8px 30px -12px rgba(151,83,62,0.12)`), uma sombra de barro difusa e quase invisível.
+
+A segunda é o botão flutuante do WhatsApp (`0 8px 24px -6px rgba(20,29,40,0.45)`), e é a única do projeto que de fato levanta uma superfície. Existe porque ele flutua sobre conteúdo que rola por baixo — sem a sombra ele lê como adesivo colado na tela, não como camada acima dela. É tingida de crepúsculo, nunca preta.
+
+Nenhuma das duas deve ser replicada em componentes novos.
 
 ### Named Rules
 
-**A Regra do Plano.** Uma superfície nova nasce sem sombra. Se ela precisa se separar do fundo, a resposta é trocar o campo ou acrescentar um contorno de 1px — nunca elevar.
+**A Regra do Plano.** Uma superfície nova nasce sem sombra. Se ela precisa se separar do fundo, a resposta é trocar o campo ou acrescentar um contorno de 1px — nunca elevar. Só escapa o que de fato paira sobre conteúdo em movimento, e hoje isso é um componente só.
 
 **A Regra do Véu.** Nenhuma fotografia aparece crua. Toda imagem recebe um gradiente por cima antes de receber texto, porque a imagem aqui é atmosfera e não documento. Em paisagem a hero acrescenta um véu radial elíptico sob a coluna de texto; em retrato não, porque ali a elipse apagaria a foto inteira.
 
@@ -201,7 +207,9 @@ O véu é navy quando a imagem serve de fundo a texto claro. Quando ela não car
 
 ## Shapes
 
-**Raio zero, em absolutamente todo lugar.** Não existe um único `rounded` no código de interface. Botões, cards, imagens, campos, painéis e a barra de navegação são retângulos exatos. As duas exceções são invisíveis e funcionais: o polegar da barra de rolagem (3px) e o anel de foco (1px), ambos herdados de superfícies do navegador.
+**Raio zero, em absolutamente todo lugar.** Não existe um único `rounded` no código de interface. Botões, cards, imagens, campos, painéis e a barra de navegação são retângulos exatos. Duas exceções são invisíveis e funcionais: o polegar da barra de rolagem (3px) e o anel de foco (1px), ambos herdados de superfícies do navegador.
+
+A terceira é visível e deliberada: **o botão flutuante do WhatsApp é um círculo**, decidido com o cliente por reconhecimento — é o único componente do site que cita um padrão da internet em vez do sistema. Ele não abre precedente, e é a única superfície arredondada do projeto.
 
 A linguagem de forma é o **contorno de 1px**, não o preenchimento. Cards, botões secundários e listas se definem por borda em Areia Lavada sobre campo claro ou Cal a 20% sobre campo escuro. O preenchimento é reservado ao botão primário e à mudança de estado.
 
@@ -209,7 +217,7 @@ O **filete de 2px** é a assinatura geométrica do sistema, e aparece em três p
 
 ### Named Rules
 
-**A Regra do Canto Reto.** Nenhum raio, em nenhum componente, em nenhuma circunstância. Um canto arredondado no Sette é um bug de sistema, não uma variação de estilo.
+**A Regra do Canto Reto.** Nenhum raio, em nenhum componente. Um canto arredondado no Sette é um bug de sistema, não uma variação de estilo — a única exceção é o botão flutuante do WhatsApp, e ela está registrada aqui justamente para que continue sendo uma só.
 
 ## Components
 
@@ -237,6 +245,41 @@ Etiqueta de seção acima do título, em Label, no token de barro do campo. É o
 
 ### Rule
 O filete de 2px. Em largura total é aresta de seção; em 48px é pontuação sob um título; em 32px, ladeando um losango de 6px rotacionado, é divisor decorativo. Sempre no token de barro do campo. Quando anima, cresce da esquerda em 1,5s.
+
+### Botões de loja
+O par de downloads do app, em `BotoesLoja`. Não usamos os selos oficiais da Apple e do Google: eles trazem canto arredondado, campo preto e tipografia própria — três coisas que o sistema não tem em lugar nenhum, e o selo oficial no meio de uma seção do Sette lê como anúncio colado por cima. O que as lojas exigem é que a marca apareça inteira e não alterada; o glifo vai intacto e a moldura em volta é nossa.
+
+- **Forma:** botão ghost do sistema — retângulo exato, contorno de 1px no token de barro do campo, preenchimento no hover e no `:active` em 500ms.
+- **Glifo:** a maçã e o triângulo do Play vão em **preenchimento**, não em traço. São silhuetas: contorná-las produz um desenho que ninguém reconhece. É a mesma licença que `IconWhatsapp` e `IconInstagram` já tomam em Contato, e a exceção à regra do ícone em traço de 1,2px.
+- **Texto:** duas linhas, ambas em Label. Acima, a plataforma (`iPhone · iPad`, `Android`) a 0,55rem e 70% de opacidade; abaixo, o nome da loja a 0,7rem. A plataforma vem primeiro porque é ela que o visitante está escolhendo — quem tem iPhone não procura "App Store", procura "iPhone".
+- **Rótulo acessível:** o `aria-label` diz a frase inteira — baixar, para qual plataforma, em qual loja, e que abre em nova aba. As duas linhas visíveis são curtas demais para carregar isso sozinhas.
+
+### Botão flutuante do WhatsApp
+Atalho persistente no canto inferior direito, em todas as páginas menos `/app`.
+
+O padrão da internet para isto é um **círculo verde com sombra**, e as três características contrariam o sistema: o círculo, a Regra do Canto Reto; o verde, a Regra da Voz Única; a sombra, a Regra do Plano. Duas foram aceitas e uma não.
+
+**Círculo de 56px com sombra, em Barro Batido.** A forma e a elevação vieram do padrão, porque é por elas que as pessoas reconhecem o que o botão faz antes de ler qualquer coisa. **A cor não.** Um segundo acento apareceria em todas as páginas, sempre por cima de tudo, e viraria a cor mais constante do site — o glifo do WhatsApp, que vai intacto, já carrega o reconhecimento sozinho.
+
+- **Campo sólido**, e não o contorno de 1px do botão ghost: este flutua sobre fotografia, saibro, navy e cal ao longo da rolagem, e só o preenchimento o mantém legível em todos. Cal sobre Barro Batido mede 5,47:1.
+- **Sombra tingida de crepúsculo** (`0 8px 24px -6px rgba(20,29,40,0.45)`), nunca preta, e mais forte no hover — onde ele também sobe 4px.
+- **Entra depois da primeira tela** (90% da altura da janela). Sobre a hero ele disputaria com os CTAs que já estão ali, e a hero é onde o site já diz o que fazer.
+- **`pointer-events` acompanha a opacidade.** Invisível não pode ser clicável — um botão a 0% que ainda intercepta o toque é uma armadilha no canto da tela.
+- **Camada 40**, abaixo da navbar (50) para não brigar com a gaveta do celular, e da âncora de pular conteúdo (60).
+- **Respeita a área segura** do aparelho por `env(safe-area-inset-*)`, para não cair sob a barra de gestos do iPhone.
+
+### QR de download
+Aparece na seção do app **só no desktop**, e essa condição é a regra: num celular o app está a um toque e o código seria o gesto mais longo; num computador ele é o único caminho, porque o app não se instala ali.
+
+- **Destino:** a rota `/app`, nunca a loja direto. Um código impresso não sabe quem aponta a câmera para ele — quem decide entre App Store e Google Play é a página.
+- **Placa:** Cal com contorno de 1px, **inclusive sobre campo escuro**. É a única superfície do sistema que ignora a alternância de campo, e por motivo funcional: leitor de QR espera módulo escuro sobre fundo claro. Legibilidade de máquina vem antes de coerência de campo.
+- **Módulos:** Azul de Crepúsculo, 11,6:1 sobre a placa. A zona de silêncio é o padding da placa somado a 2 módulos no próprio vetor.
+- **Endereço por extenso** ao lado, em Label: quem não tem câmera à mão digita.
+
+### Seção do app
+`AppSette`, o bloco que apresenta o app de reservas. Aparece em duas páginas com vizinhanças diferentes, então nasce com o campo como parâmetro — `escuro`, `claro` ou `quente` — e não com um fundo fixo: quem decide é a Regra do Campo Alternado da página onde ele entra, não o componente.
+
+O selo mostrado é o `badge-*.svg` do próprio projeto, não a arte baixada da loja. O ícone do app já é o selo da marca, então a versão vetorial é a mesma imagem sem o peso de um PNG — e sem o canto arredondado que a loja aplica. Ele aparece dentro de uma moldura de 1px **reta**, e essa é a piada silenciosa do bloco: a loja arredonda, nós não.
 
 ### Grain
 Camada de textura sobre campos escuros, a 3% de opacidade, sempre `aria-hidden`. É o que impede que uma seção navy inteira leia como bloco chapado de cor.

@@ -16,7 +16,7 @@ web
 
 O Sette Racket Club é um clube de raquete **em operação** em Fortaleza, no Papicu, com tênis e padel.
 
-O site existe para levar o visitante a **reservar uma quadra**. A reserva não é automatizada: acontece por conversa no WhatsApp. Sucesso é o visitante sair do site com um horário encaminhado — não é tempo de permanência nem inscrição em lista.
+O site existe para levar o visitante a **reservar uma quadra**. Desde setembro de 2026 a reserva acontece no **app do clube**, publicado na App Store e no Google Play; o WhatsApp permanece como canal de apoio, para quem prefere falar com alguém. Sucesso é o visitante sair do site com o app instalado ou com um horário encaminhado — não é tempo de permanência nem inscrição em lista.
 
 ## Positioning
 
@@ -28,7 +28,9 @@ O modelo de acesso é o que um clube vizinho não copia de graça: **aberto ao p
 
 - **Endereço:** Rua Valdetário Mota, 1058 — Papicu, Fortaleza — CE, CEP 60175-742
 - **Funcionamento:** Segunda a sexta 06h00–23h00 · Sábado 07h00–22h00 · Domingo e feriados 07h00–20h00
-- **Canal de reserva:** WhatsApp (85) 98557-5252. Toda reserva passa por atendimento humano.
+- **Canal de reserva:** o app **SETTE RACKET CLUB** (App Store `id6796340153` · Google Play `es.tpc.matchpoint.appclient.setteracketclub`), white-label da TPC Matchpoint Brasil, publicado em 4 de setembro de 2026. Gratuito, iOS 12+.
+- **Link curto do app:** `setteclub.com/app` — rota do próprio site que detecta o aparelho e redireciona para a loja certa. É o destino do QR e serve para bio de rede social, mensagem e material impresso.
+- **Canal de apoio:** WhatsApp (85) 98557-5252, para quem prefere atendimento humano.
 - **Outros canais:** Instagram @setteracketclub · e-mail contato@setteclub.com
 - **Domínio:** setteclub.com
 
@@ -40,7 +42,11 @@ O modelo de acesso é o que um clube vizinho não copia de graça: **aberto ao p
 
 **Programação:** torneios internos entre membros com ranking e premiação, clínicas e workshops com profissionais convidados, encontros sociais no lounge.
 
-**Sem reserva online.** Não existe sistema de agendamento, disponibilidade em tempo real ou pagamento. Qualquer trabalho que sugira "reserve agora" precisa terminar no WhatsApp.
+**A reserva é no app.** O agendamento, os horários livres, o ranking e a inscrição em campeonatos acontecem no app do clube — é ele que "reserve agora" deve alcançar. O site não tem, e não deve simular, disponibilidade em tempo real ou pagamento: ele leva à loja, e a loja leva ao app.
+
+O que o app promete é o que a ficha das lojas lista — reservas, horários, promoções, descontos, notícias, sistema play, amigos, ranking, campeonatos e agenda. Não atribuir ao app função que a ficha não declara.
+
+**O WhatsApp não saiu.** Ele deixou de ser o mecanismo da reserva e virou o canal de quem prefere falar com alguém. Removê-lo do site transformaria uma escolha do visitante em imposição. Tem botão flutuante próprio, presente em todas as páginas a partir da segunda tela — é o único elemento de contato permanente do site.
 
 **Sem captação ativa de membros.** O formulário de adesão foi retirado em junho de 2026 junto com as integrações de Google Sheets e Resend. O `email-template.html` na raiz é o confirmatório daquela fase e está inativo.
 
@@ -64,7 +70,7 @@ O modelo de acesso é o que um clube vizinho não copia de graça: **aberto ao p
 ## Product Principles
 
 1. **O clube opera hoje.** Boa parte do texto ainda fala no futuro — "Fortaleza receberá", "o Sette nasce", "poderá ser frequentado" — resíduo da fase de pré-lançamento. Trabalho futuro escreve no presente.
-2. **A conversa é o produto.** Não existe reserva automatizada; o WhatsApp é o mecanismo real. Desenhar como se houvesse checkout cria uma promessa que o clube não cumpre.
+2. **A reserva é no app, a conversa continua aberta.** O app é o mecanismo real desde setembro de 2026; o WhatsApp é a segunda porta, não a principal. O site também não desenha checkout próprio: ele entrega o visitante à loja, e o que acontece depois é do app.
 3. **Render não é prova.** Enquanto não houver fotografia do espaço construído, a imagem ilustra a intenção — nunca atesta o que existe.
 4. **Duas portas, uma delas estreita.** Público geral entra pela reserva; membro entra por seleção. Confundir as duas transforma o clube em academia ou em clube fechado, e ele não é nenhum dos dois.
 5. **A marca vive no detalhe material.** O saibro, a régua, o brasão gravado no chão. A identidade é tátil antes de ser gráfica.
