@@ -1,12 +1,16 @@
 import { motion } from 'framer-motion'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import Grain from '../components/Grain'
+import AppSette from '../components/AppSette'
+import { IconApp } from '../components/BotoesLoja'
 import {
   CLUBE,
   pendente,
+  hrefSeguro,
   urlWhatsapp,
   urlInstagram,
   urlEmail,
+  temApp,
   urlMapa,
   urlComoChegar,
   linhaBairro,
@@ -80,18 +84,40 @@ const detalhes = [
     label: 'Endereço',
     valor: pendente(CLUBE.endereco) ? AGUARDANDO : CLUBE.endereco,
     sub: linhaBairro(),
+    href: urlComoChegar(),
   },
   {
     Icon: IconPhone,
     label: 'Telefone',
     valor: pendente(CLUBE.telefone) ? AGUARDANDO : CLUBE.telefone,
     sub: 'WhatsApp disponível',
+    // `tel:` no celular disca; no desktop o sistema decide o que fazer.
+    href: hrefSeguro(CLUBE.telefone, () => `tel:+${CLUBE.whatsapp}`),
   },
-  { Icon: IconMail, label: 'E-mail', valor: CLUBE.email, sub: 'Resposta em até 24h' },
-  { Icon: IconClock, label: 'Horário', valor: 'Todos os dias', sub: '6h às 23h' },
+  {
+    Icon: IconMail,
+    label: 'E-mail',
+    valor: CLUBE.email,
+    // Aqui dizia "Resposta em até 24h". Nada no projeto sustenta esse prazo, e
+    // prometer atendimento que o clube não assumiu é inventar fato.
+    href: urlEmail(),
+  },
+  {
+    Icon: IconClock,
+    label: 'Horário',
+    valor: 'Todos os dias',
+    // Dizia "6h às 23h", que é falso: só vale de segunda a sexta — a tabela
+    // duas seções abaixo, nesta mesma página, dizia o contrário. Agora sai da
+    // mesma fonte que ela, e a tabela completa continua logo abaixo.
+    sub: `${CLUBE.horarios[0].hora} nos dias úteis`,
+  },
 ]
 
 const canais = [
+  // O app vem primeiro: é por ele que a reserva acontece.
+  ...(temApp()
+    ? [{ Icon: IconApp, label: 'App do clube', valor: 'iOS e Android', href: '#app-sette', interno: true }]
+    : []),
   {
     Icon: IconWhatsapp,
     label: 'WhatsApp',
@@ -134,31 +160,52 @@ function Hero() {
           </h1>
           <div className="w-16 h-[2px] bg-terracotta-on-dark my-8" />
           <p className="text-sm sm:text-base text-stone-light/85 font-light leading-relaxed font-body max-w-md text-balance">
-            Reserve um horário pelo WhatsApp. Toda reserva passa por uma conversa,
-            não por um formulário.
+            A reserva de quadra se faz pelo app do clube. Se preferir falar com
+            a gente, o WhatsApp continua aberto.
           </p>
 
-          {/* Enquanto não houver número real o CTA não vira link: um botão que
-              abre uma conversa inexistente é pior que nenhum botão. */}
-          {whats ? (
-            <a
-              href={whats}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 mt-10 px-9 py-4 bg-terracotta text-cream text-[0.7rem] tracking-ultra-wide uppercase font-body font-light hover:bg-terracotta-light transition-all duration-500"
-            >
-              <IconWhatsapp className="w-4 h-4" />
-              Agende um horário
-            </a>
-          ) : (
-            <a
-              href={urlEmail()}
-              className="inline-flex items-center gap-3 mt-10 px-9 py-4 bg-terracotta text-cream text-[0.7rem] tracking-ultra-wide uppercase font-body font-light hover:bg-terracotta-light transition-all duration-500"
-            >
-              <IconMail className="w-4 h-4" />
-              Agende um horário
-            </a>
-          )}
+          {/* O app é o canal de reserva, então ele é o único botão. O WhatsApp
+              não sai da página — desce para linha de apoio, que é o peso certo
+              para o canal que resolve o que o app não resolve.
+
+              O botão leva à seção abaixo, onde as duas lojas aparecem juntas:
+              pedir a plataforma aqui em cima custaria dois botões antes do
+              assunto. Sem número real o WhatsApp vira e-mail. */}
+          <div className="mt-10">
+            {temApp() && (
+              <a
+                href="#app-sette"
+                className="flex w-full sm:inline-flex sm:w-auto items-center justify-center gap-3 px-9 py-5 sm:py-4 bg-terracotta border border-terracotta text-cream text-[0.7rem] tracking-ultra-wide uppercase font-body font-light hover:bg-terracotta-light hover:border-terracotta-light active:bg-terracotta-light active:border-terracotta-light transition-all duration-500 ease-out [-webkit-tap-highlight-color:transparent]"
+              >
+                <IconApp className="w-4 h-4" />
+                Reserve no app
+              </a>
+            )}
+
+            {/* O ícone fica FORA do link e a linha é um flex-row. Antes o
+                `<a>` era `inline-flex` com `gap` e `underline` juntos: o
+                sublinhado atravessava o vão entre ícone e palavra, o ícone
+                subia acima da linha de base e o ponto final se soltava. */}
+            <p className="mt-6 flex items-center gap-2 text-sm text-stone-light/75 font-light font-body">
+              {whats ? (
+                <IconWhatsapp className="w-4 h-4 flex-shrink-0 text-terracotta-on-dark" />
+              ) : (
+                <IconMail className="w-4 h-4 flex-shrink-0 text-terracotta-on-dark" />
+              )}
+              <span>
+                {whats ? 'Prefere falar com a gente? ' : 'Prefere escrever? '}
+                <a
+                  href={whats || urlEmail()}
+                  target={whats ? '_blank' : undefined}
+                  rel={whats ? 'noopener noreferrer' : undefined}
+                  className="underline underline-offset-4 decoration-1 text-terracotta-on-dark hover:text-cream transition-colors duration-300"
+                >
+                  {whats ? 'WhatsApp' : 'E-mail'}
+                </a>
+                .
+              </span>
+            </p>
+          </div>
         </motion.div>
       </div>
 
@@ -208,21 +255,39 @@ function DetalhesEMapa() {
           </h2>
 
           <div className="divide-y divide-sand/70 border-t border-b border-sand/70">
-            {detalhes.map(({ Icon, label, valor, sub }) => (
-              <div
-                key={label}
-                className="group flex items-start gap-5 py-6 transition-all duration-500 hover:pl-2 motion-reduce:transition-none motion-reduce:hover:pl-0"
-              >
-                <span className="mt-1 flex-shrink-0 w-10 h-10 flex items-center justify-center border border-sand text-terracotta group-hover:border-terracotta group-hover:bg-terracotta group-hover:text-cream transition-all duration-500">
-                  <Icon className="w-5 h-5" />
-                </span>
-                <div>
-                  <p className="text-[0.65rem] tracking-ultra-wide uppercase text-stone font-light font-body mb-1">{label}</p>
-                  <p className="font-display text-xl sm:text-2xl font-light text-navy">{valor}</p>
-                  <p className="text-sm text-stone font-light font-body">{sub}</p>
+            {detalhes.map(({ Icon, label, valor, sub, href }) => {
+              const conteudo = (
+                <>
+                  <span className="mt-1 flex-shrink-0 w-10 h-10 flex items-center justify-center border border-sand text-terracotta group-hover:border-terracotta group-hover:bg-terracotta group-hover:text-cream transition-all duration-500">
+                    <Icon className="w-5 h-5" />
+                  </span>
+                  <div>
+                    <p className="text-[0.65rem] tracking-ultra-wide uppercase text-stone font-light font-body mb-1">{label}</p>
+                    <p className="font-display text-xl sm:text-2xl font-light text-navy">{valor}</p>
+                    {sub && <p className="text-sm text-stone font-light font-body">{sub}</p>}
+                  </div>
+                </>
+              )
+              const classe =
+                'group flex items-start gap-5 py-6 transition-all duration-500 hover:pl-2 motion-reduce:transition-none motion-reduce:hover:pl-0'
+
+              // Campo sem dado real não vira link — mesma regra dos canais.
+              return href ? (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className={`${classe} [-webkit-tap-highlight-color:transparent]`}
+                >
+                  {conteudo}
+                </a>
+              ) : (
+                <div key={label} className={classe}>
+                  {conteudo}
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </motion.div>
 
@@ -337,8 +402,8 @@ function Canais() {
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-cream">Escolha o seu canal</h2>
         </motion.div>
 
-        <motion.div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-cream/15 border border-cream/15" variants={container} initial="hidden" animate={controls}>
-          {canais.map(({ Icon, label, valor, href }) => {
+        <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-cream/15 border border-cream/15" variants={container} initial="hidden" animate={controls}>
+          {canais.map(({ Icon, label, valor, href, interno }) => {
             const conteudo = (
               <>
                 <span className="w-14 h-14 flex items-center justify-center border border-terracotta-on-dark/50 text-terracotta-on-dark group-hover:bg-terracotta-on-dark group-hover:text-navy-deep transition-all duration-500 mb-6">
@@ -355,8 +420,8 @@ function Canais() {
               <motion.a
                 key={label}
                 href={href}
-                target={href.startsWith('mailto:') ? undefined : '_blank'}
-                rel="noopener noreferrer"
+                target={interno || href.startsWith('mailto:') ? undefined : '_blank'}
+                rel={interno ? undefined : 'noopener noreferrer'}
                 variants={reveal}
                 className={`${classe} hover:bg-navy-light`}
               >
@@ -380,6 +445,10 @@ export default function Contato() {
   return (
     <>
       <Hero />
+      {/* Canal principal de reserva, então vem antes de endereço e horário.
+          Hero é `navy` e Detalhes é `cream`: o app fica em `warm` e a
+          alternância de campo segue de pé. */}
+      <AppSette campo="quente" />
       <DetalhesEMapa />
       <Horarios />
       <Canais />
