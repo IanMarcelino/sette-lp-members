@@ -3,6 +3,7 @@ import Hero from '../components/Hero'
 import Concept from '../components/Concept'
 import Modalidades from '../components/Modalidades'
 import Pillars from '../components/Pillars'
+import AppSette from '../components/AppSette'
 
 // O carrossel carrega o GSAP inteiro (~70 KB) e fica bem abaixo da dobra —
 // não precisa competir com o Hero pelo início do carregamento.
@@ -21,6 +22,8 @@ export default function Home() {
         <Carousel />
       </Suspense>
       <Pillars />
+      {/* Pillars é `warm`; o app entra em `navy` e fecha a Home no escuro. */}
+      <AppSette campo="escuro" id="app" />
     </>
   )
 }

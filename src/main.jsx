@@ -11,6 +11,9 @@ const OClube = lazy(() => import('./pages/OClube'))
 const OEspaco = lazy(() => import('./pages/OEspaco'))
 const Experiencia = lazy(() => import('./pages/Experiencia'))
 const Contato = lazy(() => import('./pages/Contato'))
+// Destino do QR: redireciona para a loja do aparelho. Chunk próprio porque
+// quase ninguém chega por aqui pelo site — chega pela câmera do celular.
+const BaixarApp = lazy(() => import('./pages/BaixarApp'))
 
 // Placeholder na cor da navbar: cobre o intervalo entre rotas sem piscar branco.
 const carregando = <div className="min-h-svh bg-navy" aria-busy="true" aria-live="polite" />
@@ -25,6 +28,7 @@ const router = createBrowserRouter([
       { path: '/o-espaco', element: suspenso(<OEspaco />) },
       { path: '/experiencia', element: suspenso(<Experiencia />) },
       { path: '/contato', element: suspenso(<Contato />) },
+      { path: '/app', element: suspenso(<BaixarApp />) },
       { path: '*', element: <Navigate to="/" replace /> },
     ],
   },

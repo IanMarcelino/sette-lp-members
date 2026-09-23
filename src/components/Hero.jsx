@@ -138,13 +138,16 @@ export default function Hero() {
             Um clube de raquete pensado para quem valoriza performance, convívio e bom gosto.
           </motion.p>
 
-          {/* A reserva é o objetivo declarado do site, então ela lidera. */}
+          {/* A reserva é o objetivo declarado do site, então ela lidera — e desde
+              que o app existe, é ele que a resolve. A âncora desce para a seção
+              do app, no fim desta mesma página, onde as duas lojas aparecem
+              juntas. É `<a>` e não `<Link>`: o destino é esta página. */}
           <motion.div custom={2.8} variants={variants} initial="hidden" animate="visible"
             className="mt-12 baixa:mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link to="/contato"
+            <a href="#app"
               className="inline-block w-full sm:w-auto px-10 py-4 bg-terracotta border border-terracotta text-cream text-[0.7rem] sm:text-xs tracking-ultra-wide uppercase font-body font-light hover:bg-terracotta-light hover:border-terracotta-light active:bg-terracotta-light active:border-terracotta-light transition-all duration-500 ease-out [-webkit-tap-highlight-color:transparent]">
-              Agende um horário
-            </Link>
+              Reserve no app
+            </a>
             <Link to="/o-clube"
               className="inline-block w-full sm:w-auto px-10 py-4 border border-terracotta-on-photo text-terracotta-on-photo text-[0.7rem] sm:text-xs tracking-ultra-wide uppercase font-body font-light hover:bg-terracotta-on-photo hover:text-navy-deep active:bg-terracotta-on-photo active:text-navy-deep transition-all duration-500 ease-out [-webkit-tap-highlight-color:transparent]">
               Conheça o clube

@@ -2,6 +2,13 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import badgeWhite from '../assets/badge-white.svg'
+import { IconApple, IconPlay } from './BotoesLoja'
+import { urlAppStore, urlPlayStore } from '../config/clube'
+
+const lojas = [
+  { Icon: IconApple, label: 'App Store', href: urlAppStore() },
+  { Icon: IconPlay, label: 'Google Play', href: urlPlayStore() },
+].filter((l) => l.href)
 
 const navLinks = [
   { to: '/o-clube', label: 'O Clube' },
@@ -47,6 +54,29 @@ export default function Footer() {
             </Link>
           ))}
         </nav>
+
+        {/* O app em todas as páginas, sem disputar com a navegação: mesma
+            altura de toque dos links acima, meio tom abaixo deles em cor. */}
+        {lojas.length > 0 && (
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-7">
+            <span className="py-3 text-[0.6rem] tracking-ultra-wide uppercase text-stone-light/80 font-light font-body">
+              App do clube
+            </span>
+            {lojas.map(({ Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Baixar o app do Sette Racket Club na ${label} — abre em nova aba`}
+                className="py-3 inline-flex items-center gap-2 text-[0.6rem] tracking-ultra-wide uppercase text-cream/60 hover:text-terracotta-on-dark transition-colors duration-300 font-light font-body"
+              >
+                <Icon className="w-3.5 h-3.5" />
+                {label}
+              </a>
+            ))}
+          </div>
+        )}
 
         <div className="mt-8 w-8 h-[2px] bg-terracotta/40 mx-auto" />
         <p className="mt-6 text-[0.65rem] tracking-[0.2em] text-stone-light/70 font-light font-body">
