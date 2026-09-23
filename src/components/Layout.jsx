@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import ScrollToTop from './ScrollToTop'
+import BotaoWhatsapp from './BotaoWhatsapp'
 
 // Chassi compartilhado por todas as páginas: navegação fixa, conteúdo da rota
 // com fade-in a cada troca de rota, e rodapé institucional.
@@ -34,6 +35,10 @@ export default function Layout() {
         <Outlet />
       </motion.main>
       <Footer />
+      {/* Fora do <main>: é atalho persistente, não conteúdo da rota. Fica
+          depois do rodapé na ordem do DOM para não entrar na frente do
+          conteúdo na navegação por teclado. */}
+      <BotaoWhatsapp />
     </>
   )
 }
